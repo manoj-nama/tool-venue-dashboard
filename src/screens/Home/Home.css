@@ -1,0 +1,38 @@
+
+.test{
+    margin:auto;
+    margin-bottom: 50px;
+    padding-bottom: 80px;;
+    color:black;
+    text-align:center;
+    background-color: rgb(220,220,220)!important;
+
+}
+.image{
+    width:60px;
+    height:50px;
+}
+.Users{
+    display:flex;
+    justify-content:space-evenly
+    /*column-count: 2;*/
+}
+
+.border{
+    border-left: 2px solid rgb(61, 59, 59);
+    height: 130px;
+}
+.rectangle {
+    
+    width: 120px;
+    height: 140px;
+    background: rgb(9, 49, 169);
+    text-align: center;
+}
+p{
+    color:white;
+    font-size: 20px;
+}
+h2{
+    font-size: 20px;;
+}
