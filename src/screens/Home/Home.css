@@ -1,11 +1,33 @@
+*{
+    background-color: rgb(232,232,232);
+
+}
+
+.container{
+    margin-bottom: 10px;
+    margin-top:15px;
+    margin-left:30px;
+    height:870px;
+    width:1730px;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0px 3px 3px -2px rgb(0 0 0 / 20%),
+		0px 3px 4px 0px rgb(0 0 0 / 14%), 0px 1px 8px 0px rgb(0 0 0 / 12%);
+}
 
 .test{
     margin:auto;
+    padding-top:10px;
     margin-bottom: 50px;
     padding-bottom: 80px;;
-    color:black;
+    color:white;
+    border-radius: 10px;
     text-align:center;
-    background-color: rgb(220,220,220)!important;
+    background-color: rgb(18, 70, 15);
+
+}
+.imagebg{
+    background-color: rgb(18, 70, 15);
 
 }
 .image{
@@ -14,25 +36,54 @@
 }
 .Users{
     display:flex;
-    justify-content:space-evenly
-    /*column-count: 2;*/
+    flex-direction:row;
+    justify-content: center;
+    gap:100px;
+
+    /*justify-content:space-evenly
+    column-count: 2;*/
+}
+div.Users{
+    background-color: white;
+}
+
+h1,h2{
+    background-color: rgb(18, 70, 15);
+}
+.Users1{
+    background-color: rgb(18, 70, 15);
+    display:flex;
+    flex-direction:row;
+    justify-content: center;
+    gap:100px;
+
 }
 
 .border{
-    border-left: 2px solid rgb(61, 59, 59);
+    border-left: 2px solid rgb(248, 247, 247);
     height: 130px;
 }
 .rectangle {
     
-    width: 120px;
+    width: 130px;
     height: 140px;
-    background: rgb(9, 49, 169);
-    text-align: center;
+    border-radius:50%;
+    background: rgb(26, 132, 7);
+    display: flex; /* or inline-flex */
+    align-items: center; 
+    justify-content: center;
+    
+    
 }
 p{
     color:white;
     font-size: 20px;
+    background-color: rgb(26, 132, 7);
+    
 }
 h2{
-    font-size: 20px;;
+    font-size: 20px;
+}
+h2.act{
+    padding-left:40px;
 }
