@@ -1,25 +1,25 @@
 const data = {
   most_placed_bets: [
-    { venueId: 12345, venueName: "venue1", frequency_of_bets: "540" },
+    { venueId: 12345, venueName: "venue1", frequency_of_bets: "900" },
     {
       venueId: 12347,
       venueName: "venue2",
-      frequency_of_bets: "700",
+      frequency_of_bets: "600",
     },
     {
       venueId: 12349,
       venueName: "venue3",
-      frequency_of_bets: "300",
+      frequency_of_bets: "250",
     },
     {
       venueId: 88471,
       venueName: "venue4",
-      frequency_of_bets: "440",
+      frequency_of_bets: "180",
     },
     {
       venueId: 10023,
       venueName: "venue5",
-      frequency_of_bets: "540",
+      frequency_of_bets: "760",
     },
   ],
   most_amount_spent: [

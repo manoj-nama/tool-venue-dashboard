@@ -57,7 +57,7 @@ function Charts(props) {
               className="typo"
               color={props.textColor}
             >
-              {user?.active_users}
+              {user?.[props.keyName]}
             </Typography>
             <Typography
               display="block"
@@ -66,14 +66,14 @@ function Charts(props) {
               className="typo"
               color={props.textColor}
             >
-              {user.venueName}
+              {user?.venueName}
             </Typography>
             <LinearProgress
               color={props.color}
               style={{ paddingBottom: 2, marginBottom: 2 }}
               variant="determinate"
               value={parseInt(
-                (user?.active_users / parseInt(max[props?.keyName])) * 100
+                (user?.[props.keyName] / parseInt(max[props?.keyName])) * 100
               )}
             />
           </Box>

@@ -16,6 +16,7 @@ const Home = () => {
   useEffect(() => {
     getSatats();
   }, []);
+
   return (
     <div className="container">
       <div className="test">
@@ -50,15 +51,15 @@ const Home = () => {
         />
         <Charts
           name="Bets Placed/Hr"
-          data={venuStats?.active_users}
-          keyName={"active_users"}
+          data={venuStats?.most_placed_bets}
+          keyName={"frequency_of_bets"}
           color={"primary"}
           textColor={"#1876d2"}
         />
         <Charts
           name="Amount Placed on Bets/Hr"
-          data={venuStats?.active_users}
-          keyName={"active_users"}
+          data={venuStats?.most_amount_spent}
+          keyName={"frequency_of_amount_spent"}
           color={"success"}
           textColor={"#2f7c32"}
         />
