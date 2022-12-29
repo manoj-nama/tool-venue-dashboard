@@ -1,5 +1,4 @@
 import React from "react";
-import Slider, { SliderProps } from "@mui/material/Slider";
 import Box from "@mui/material/Box";
 import { Typography } from "@mui/material";
 import { Link } from "@mui/material";
