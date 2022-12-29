@@ -1,5 +1,4 @@
 import React from "react";
-import Slider, { SliderProps } from "@mui/material/Slider";
 import Box from "@mui/material/Box";
 import { Typography } from "@mui/material";
 import { Link } from "@mui/material";
@@ -34,6 +33,7 @@ function Charts(props) {
 
   return (
     <div className="line">
+      <div className="line1">
       <Box sx={{ width: 330 }} className="box">
         <Typography align="center" variant="h6" className="typo">
           Top 5 Venues with Most{" "}
@@ -49,12 +49,12 @@ function Charts(props) {
         </Typography>
 
         {props?.data?.map((user) => (
-          <Box>
+          <Box className="box1">
             <Typography
               display="block"
               align="left"
               variant="h7"
-              className="typo"
+              className="typo11"
               color={props.textColor}
             >
               {user?.[props.keyName]}
@@ -63,7 +63,7 @@ function Charts(props) {
               display="block"
               align="left"
               variant="h10"
-              className="typo"
+              className="typo12"
               color={props.textColor}
             >
               {user?.venueName}
@@ -71,6 +71,8 @@ function Charts(props) {
             <LinearProgress
               color={props.color}
               style={{ paddingBottom: 2, marginBottom: 2 }}
+              className="typo13"
+
               variant="determinate"
               value={parseInt(
                 (user?.[props.keyName] / parseInt(max[props?.keyName])) * 100
@@ -79,7 +81,9 @@ function Charts(props) {
           </Box>
         ))}
       </Box>
+      </div>
 
+      
       <Link
         href="/venue"
         sx={{

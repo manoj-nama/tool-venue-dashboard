@@ -1,7 +1,11 @@
 *{
     background-color: rgb(238, 231, 231);
 }
-.line,.box,.typo,.slide{
+.line1{
+    height:380px;
+
+}
+.line,.line1,.box,.typo,.slide{
     background-color: white!important;
 }
 
@@ -9,5 +13,32 @@
     float:right;
     border-radius: 5px;
     padding:5px;
+    background-color: white;
+}
+.typo,.typo11,.typo13{
+    background-color: white;
+    font-family:Georgia, 'Times New Roman', Times, serif!important;
+    font-weight: normal!important;
+}
+.typo11{
+    font-size: 25px  ;
+    padding-bottom:3px;
+}
+.typo12{
+    padding-top: 0px;
+    background-color: white;
+    font-family:Verdana, Geneva, Tahoma, sans-serif!important;
+    font-size:13px;
+    font-weight: bold!important;
+
+}
+.typo13{
+    height:7px!important;
+    
+}
+.box1{
+    padding-top:10px;
+    padding-bottom:10px;
+    line-height: 14px;
     background-color: white;
 }

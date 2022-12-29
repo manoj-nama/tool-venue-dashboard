@@ -21,7 +21,7 @@ const Home = () => {
     <div className="container">
       <div className="test">
         <div className="imagebg">
-          <img src={img} className="image"></img>
+          <img src={img} className="image" alt="logo here"></img>
         </div>
         <h1>Top Venues</h1>
         <div className="Users1">
@@ -39,9 +39,9 @@ const Home = () => {
           <h2>Number of Venues</h2>
         </div>
       </div>
-
-      <br />
+      <br/>
       <div className="Users">
+        
         <Charts
           name="Users"
           data={venuStats?.active_users}

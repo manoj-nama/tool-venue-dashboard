@@ -1,13 +1,13 @@
+
 *{
     background-color: rgb(232,232,232);
 
 }
-
 .container{
     margin-bottom: 10px;
     margin-top:15px;
     margin-left:30px;
-    height:870px;
+    height:900px;
     width:1730px;
     border-radius: 10px;
     background-color: white;
@@ -19,7 +19,7 @@
     margin:auto;
     padding-top:10px;
     margin-bottom: 50px;
-    padding-bottom: 80px;;
+    padding-bottom: 65px;;
     color:white;
     border-radius: 10px;
     text-align:center;
@@ -49,6 +49,12 @@ div.Users{
 
 h1,h2{
     background-color: rgb(18, 70, 15);
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    
+}
+h2{
+    font-size: 25px ;
+    font-weight: normal;
 }
 .Users1{
     background-color: rgb(18, 70, 15);
@@ -81,9 +87,7 @@ p{
     background-color: rgb(26, 132, 7);
     
 }
-h2{
-    font-size: 20px;
-}
+
 h2.act{
     padding-left:40px;
 }
