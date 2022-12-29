@@ -4,7 +4,7 @@ import { Typography } from "@mui/material";
 import { Link } from "@mui/material";
 import "./Charts.css";
 import { createTheme } from "@mui/material/styles";
-import LinearProgress from "@mui/material/LinearProgress";
+import ProgressBar from "../Components/progressiveBar";
 
 const theme = createTheme({
   status: {
@@ -34,56 +34,57 @@ function Charts(props) {
   return (
     <div className="line">
       <div className="line1">
-      <Box sx={{ width: 330 }} className="box">
-        <Typography align="center" variant="h6" className="typo">
-          Top 5 Venues with Most{" "}
-        </Typography>
+        <Box sx={{ width: 330 }} className="box">
+          <Typography align="center" variant="h6" className="typo">
+            Top 5 Venues with Most{" "}
+          </Typography>
 
-        <Typography
-          display="block"
-          align="center"
-          variant="h6"
-          className="typo"
-        >
-          {props.name}
-        </Typography>
+          <Typography
+            display="block"
+            align="center"
+            variant="h6"
+            className="typo"
+          >
+            {props.name}
+          </Typography>
 
-        {props?.data?.map((user) => (
-          <Box className="box1">
-            <Typography
-              display="block"
-              align="left"
-              variant="h7"
-              className="typo11"
-              color={props.textColor}
-            >
-              {user?.[props.keyName]}
-            </Typography>
-            <Typography
-              display="block"
-              align="left"
-              variant="h10"
-              className="typo12"
-              color={props.textColor}
-            >
-              {user?.venueName}
-            </Typography>
-            <LinearProgress
-              color={props.color}
-              style={{ paddingBottom: 2, marginBottom: 2 }}
-              className="typo13"
-
-              variant="determinate"
-              value={parseInt(
-                (user?.[props.keyName] / parseInt(max[props?.keyName])) * 100
-              )}
-            />
-          </Box>
-        ))}
-      </Box>
+          {props?.data?.map((user) => (
+            <Box className="box1">
+              <Typography
+                display="block"
+                align="left"
+                variant="h7"
+                className="typo11"
+                color={props.textColor}
+              >
+                {user?.[props.keyName]}
+              </Typography>
+              <Typography
+                display="block"
+                align="left"
+                variant="h10"
+                className="typo12"
+                color={props.textColor}
+              >
+                {user?.venueName}
+              </Typography>
+              <ProgressBar
+                label="Full progressbar"
+                visualParts={[
+                  {
+                    percentage: `${parseInt(
+                      (user?.[props.keyName] / parseInt(max[props?.keyName])) *
+                        100
+                    )}%`,
+                    color: props.textColor,
+                  },
+                ]}
+              />
+            </Box>
+          ))}
+        </Box>
       </div>
 
-      
       <Link
         href="/venue"
         sx={{

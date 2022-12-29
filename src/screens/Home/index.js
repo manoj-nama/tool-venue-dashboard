@@ -39,9 +39,8 @@ const Home = () => {
           <h2>Number of Venues</h2>
         </div>
       </div>
-      <br/>
+      <br />
       <div className="Users">
-        
         <Charts
           name="Users"
           data={venuStats?.active_users}
