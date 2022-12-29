@@ -1,0 +1,13 @@
+*{
+    background-color: rgb(238, 231, 231);
+}
+.line,.box,.typo,.slide{
+    background-color: white!important;
+}
+
+.textven{
+    float:right;
+    border-radius: 5px;
+    padding:5px;
+    background-color: white;
+}
