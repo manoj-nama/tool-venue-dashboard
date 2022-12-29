@@ -5,6 +5,9 @@ import { Link } from "@mui/material";
 import "./Charts.css";
 import { createTheme } from "@mui/material/styles";
 import ProgressBar from "../Components/progressiveBar";
+import InfoIcon from '@mui/icons-material/Info';
+import IconButton from '@mui/material/IconButton';
+import Tooltip from '@mui/material/Tooltip';
 
 const theme = createTheme({
   status: {
@@ -35,17 +38,19 @@ function Charts(props) {
     <div className="line">
       <div className="line1">
         <Box sx={{ width: 330 }} className="box">
-          <Typography align="center" variant="h6" className="typo">
-            Top 5 Venues with Most{" "}
-          </Typography>
-
+         
           <Typography
             display="block"
             align="center"
             variant="h6"
             className="typo"
-          >
+          >Most {""}
             {props.name}
+            <Tooltip title="Top 5 venues with {props.name}" >
+      <IconButton  >
+        <InfoIcon  />
+      </IconButton>
+    </Tooltip>
           </Typography>
 
           {props?.data?.map((user) => (
@@ -70,6 +75,7 @@ function Charts(props) {
               </Typography>
               <ProgressBar
                 label="Full progressbar"
+                className="typo13"
                 visualParts={[
                   {
                     percentage: `${parseInt(

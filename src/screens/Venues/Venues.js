@@ -1,7 +1,9 @@
 import React from 'react'
 import "./Venues.css";
 import img from "./logo.png";
-import SearchIcon from '@mui/icons-material/Search';
+//import Charts from "../Charts/Charts.js";
+import Search from "../Search/Search";
+import Date from "../Date/Date";
 
 function Venues() {
   return (
@@ -11,15 +13,29 @@ function Venues() {
             <img src={img} className="image" alt="logo here"></img>  
         </div>
         <h2>Venues with Most Users</h2>
-        <SearchIcon>
-        
-        </SearchIcon>
+
+        <div className="date">
+            <div className="date1">
+              <Search/>
+            </div>
+            <div className="date1">
+              
+                
+              
+            </div>
+        </div>
+
+        </div>
+        <br/>
 
         
+        <div className="userpage1">
+        
+        <Date/>
         </div>
-        <div>
 
-        </div>
+        
+        
       
     </div>
   )

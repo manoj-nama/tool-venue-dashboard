@@ -33,10 +33,10 @@ const Home = () => {
             <p>Number</p>
           </div>
         </div>
-        <div className="Users1">
+        <div className="Users12">
           <h2 className="act">Active Users</h2>
           <div className="border1"></div>
-          <h2>Number of Venues</h2>
+          <h2 className="act1">Number of Venues</h2>
         </div>
       </div>
       <br />
