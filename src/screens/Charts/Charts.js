@@ -55,6 +55,7 @@ function Charts(props) {
               align="left"
               variant="h7"
               className="typo"
+              color={props.textColor}
             >
               {user?.active_users}
             </Typography>
@@ -63,6 +64,7 @@ function Charts(props) {
               align="left"
               variant="h10"
               className="typo"
+              color={props.textColor}
             >
               {user.venueName}
             </Typography>

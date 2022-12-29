@@ -46,18 +46,21 @@ const Home = () => {
           data={venuStats?.active_users}
           keyName={"active_users"}
           color={"warning"}
+          textColor={"#ed6c03"}
         />
         <Charts
           name="Bets Placed/Hr"
           data={venuStats?.active_users}
           keyName={"active_users"}
           color={"primary"}
+          textColor={"#1876d2"}
         />
         <Charts
           name="Amount Placed on Bets/Hr"
           data={venuStats?.active_users}
           keyName={"active_users"}
           color={"success"}
+          textColor={"#2f7c32"}
         />
       </div>
     </div>
