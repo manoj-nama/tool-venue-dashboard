@@ -8,7 +8,7 @@ function Venues() {
     <div className='container'>
         <div className='test'>
         <div className="imagebg">
-            <img src={img} className="image"></img>  
+            <img src={img} className="image" alt="logo here"></img>  
         </div>
         <h2>Venues with Most Users</h2>
         <SearchIcon>
