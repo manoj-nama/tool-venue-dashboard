@@ -3,10 +3,20 @@ import "./Home.css";
 import img from "./logo.png";
 import Charts from "../Charts/Charts.js";
 import { useEffect } from "react";
-import { getVenuStats, getUserVanueCounts } from "../../services";
+import {
+  getVenuStats,
+  getUserVanueCounts,
+  getUserStats,
+  getBetsStats,
+  getUserAmount,
+} from "../../services";
 
 const Home = () => {
   const [venuStats, setVenuStats] = React.useState();
+  const [userStats, setUserStats] = React.useState();
+  const [betStats, setBetStats] = React.useState();
+  const [amountStats, setAmountStats] = React.useState();
+
   const [venuCounts, setVenuCounts] = React.useState();
 
   const getSatats = async () => {
@@ -19,9 +29,27 @@ const Home = () => {
     setVenuCounts(res);
   };
 
+  const getStatsForUser = async () => {
+    let res = await getUserStats();
+    setUserStats(res?.active_users);
+  };
+
+  const getStatsBetsPlaced = async () => {
+    let res = await getBetsStats();
+    setBetStats(res?.data);
+  };
+
+  const getStatsForAmountPlaced = async () => {
+    let res = await getUserAmount();
+    setAmountStats(res?.data);
+  };
+
   useEffect(() => {
     getCounts();
     getSatats();
+    getStatsForUser();
+    getStatsBetsPlaced();
+    getStatsForAmountPlaced();
   }, []);
   return (
     <div className="container">
@@ -49,24 +77,30 @@ const Home = () => {
       <div className="Users">
         <Charts
           name="Users"
-          data={venuStats?.active_users}
+          data={userStats}
           keyName={"active_users"}
           color={"warning"}
           textColor={"#ed6c03"}
+          display$={"none"}
+          displayHr={"none"}
         />
         <Charts
           name="Bets Placed/Hr"
-          data={venuStats?.most_placed_bets}
+          data={betStats}
           keyName={"frequency_of_bets"}
           color={"primary"}
           textColor={"#1876d2"}
+          display$={"none"}
+          displayHr={"contents"}
         />
         <Charts
           name="Amount Placed on Bets/Hr"
-          data={venuStats?.most_amount_spent}
-          keyName={"frequency_of_amount_spent"}
+          data={amountStats}
+          keyName={"frequency_of_total_amount_spent"}
           color={"success"}
           textColor={"#2f7c32"}
+          display$={"contents"}
+          displayHr={"contents"}
         />
       </div>
     </div>

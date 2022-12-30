@@ -29,7 +29,7 @@ const theme2 = createTheme({
       styleOverrides: {
         tooltip: {
           color: "black",
-          fontSize:"13px",
+          fontSize: "13px",
           border: "1px solid black",
         },
       },
@@ -38,19 +38,12 @@ const theme2 = createTheme({
 });
 
 function Charts(props) {
-  let max = props?.data?.reduce(function (prev, current) {
-    if (+current?.[props.keyName] > +prev?.[props.keyName]) {
-      return current;
-    } else {
-      return prev;
-    }
-  });
+  let max = props?.data?.[0]?.[props?.keyName];
 
   return (
     <div className="line">
       <div className="line1">
         <Box sx={{ width: 330 }} className="box">
-          
           <Typography
             display="block"
             align="center"
@@ -59,33 +52,27 @@ function Charts(props) {
           >
             Most {""}
             {props.name}
-
-         
-         
-          <ThemeProvider theme={theme2}>
+            <ThemeProvider theme={theme2}>
               <Tooltip
                 className="toolTip"
-                wrapperStyle={{ backgroundColor: 'white'}}
+                wrapperStyle={{ backgroundColor: "white" }}
                 componentsProps={{
                   tooltip: {
                     sx: {
                       bgcolor: "common.white",
                       "& .MuiTooltip-arrow": {
-                      color: "common.white",
-                        
+                        color: "common.white",
                       },
                     },
                   },
                 }}
                 title={`Top 5 venues with most ${props.name}`}
-
               >
                 {/* <IconButton  > */}
-                <InfoIcon sx={{backgroundColor:"white"}} />
+                <InfoIcon sx={{ backgroundColor: "white" }} />
                 {/* </IconButton> */}
               </Tooltip>
             </ThemeProvider>
-         
           </Typography>
 
           {props?.data?.map((user) => (
@@ -96,9 +83,14 @@ function Charts(props) {
                 variant="h7"
                 className="typo11"
                 color={props.textColor}
-              ><span className="span1">$</span>
+              >
+                <span className="span1" style={{ display: props.display$ }}>
+                  $
+                </span>
                 {user?.[props.keyName]}
-                <span className="span">/hr</span>
+                <span className="span" style={{ display: props.displayHr }}>
+                  /hr
+                </span>
               </Typography>
               <Typography
                 display="block"
