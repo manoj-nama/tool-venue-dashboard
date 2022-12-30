@@ -2,7 +2,7 @@
     background-color: rgb(238, 231, 231);
 }
 .line1{
-    height:380px;
+    height:405px;
 
 }
 .line,.line1,.box,.typo,.slide{
@@ -49,12 +49,24 @@
     line-height: 14px;
     background-color: white;
 }
+.span{
+    font-size: 11px;
+    font-weight: normal;
+    background-color: white;
+}
+.span1{
+    font-size: 23px;
+    font-weight: bold;
+    background-color: white;
+}
 
 .toolTip,.infoIcon{
-   background-color: white;
+   background-color: white!important;
 }
 
-.toolTip{
-    /* padding-top: 10px; */
-    margin: 2px;
+.infoIcon:hover{
+    /* padding-top: 10px;
+    margin: 2px; */   
+    background-color: white!important;
 }
+

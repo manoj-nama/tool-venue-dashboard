@@ -30,6 +30,7 @@ const theme2 = createTheme({
         tooltip: {
           backgroundColor: "white",
           color: "black",
+          fontSize:"10px",
           border: "1px solid #dadde9",
         },
       },
@@ -50,6 +51,7 @@ function Charts(props) {
     <div className="line">
       <div className="line1">
         <Box sx={{ width: 330 }} className="box">
+          
           <Typography
             display="block"
             align="center"
@@ -58,26 +60,33 @@ function Charts(props) {
           >
             Most {""}
             {props.name}
-            <ThemeProvider theme={theme2}>
+
+         
+         
+          <ThemeProvider theme={theme2}>
               <Tooltip
                 className="toolTip"
+                wrapperStyle={{ backgroundColor: 'white'}}
                 componentsProps={{
                   tooltip: {
                     sx: {
                       bgcolor: "common.white",
                       "& .MuiTooltip-arrow": {
-                        color: "common.white",
+                      color: "common.white",
+                        
                       },
                     },
                   },
                 }}
                 title={`Top 5 venues with most ${props.name}`}
+
               >
                 {/* <IconButton  > */}
                 <InfoIcon className="infoIcon" />
                 {/* </IconButton> */}
               </Tooltip>
             </ThemeProvider>
+         
           </Typography>
 
           {props?.data?.map((user) => (
@@ -88,8 +97,9 @@ function Charts(props) {
                 variant="h7"
                 className="typo11"
                 color={props.textColor}
-              >
+              ><span className="span1">$</span>
                 {user?.[props.keyName]}
+                <span className="span">/hr</span>
               </Typography>
               <Typography
                 display="block"
