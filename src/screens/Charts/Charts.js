@@ -28,10 +28,9 @@ const theme2 = createTheme({
     MuiTooltip: {
       styleOverrides: {
         tooltip: {
-          backgroundColor: "white",
           color: "black",
-          fontSize:"10px",
-          border: "1px solid #dadde9",
+          fontSize:"13px",
+          border: "1px solid black",
         },
       },
     },
@@ -82,7 +81,7 @@ function Charts(props) {
 
               >
                 {/* <IconButton  > */}
-                <InfoIcon className="infoIcon" />
+                <InfoIcon sx={{backgroundColor:"white"}} />
                 {/* </IconButton> */}
               </Tooltip>
             </ThemeProvider>

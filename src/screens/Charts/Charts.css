@@ -1,5 +1,5 @@
 *{
-    background-color: rgb(238, 231, 231);
+    background-color: white;
 }
 .line1{
     height:405px;
@@ -60,13 +60,7 @@
     background-color: white;
 }
 
-.toolTip,.infoIcon{
-   background-color: white!important;
-}
 
-.infoIcon:hover{
-    /* padding-top: 10px;
-    margin: 2px; */   
-    background-color: white!important;
-}
+
+
 
