@@ -3,8 +3,10 @@ import Box from "@mui/material/Box";
 import { Typography } from "@mui/material";
 import { Link } from "@mui/material";
 import "./Charts.css";
-import { createTheme } from "@mui/material/styles";
-import LinearProgress from "@mui/material/LinearProgress";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import ProgressBar from "../Components/progressiveBar";
+import InfoIcon from "@mui/icons-material/Info";
+import Tooltip from "@mui/material/Tooltip";
 
 const theme = createTheme({
   status: {
@@ -21,63 +23,102 @@ const theme = createTheme({
     },
   },
 });
+const theme2 = createTheme({
+  components: {
+    MuiTooltip: {
+      styleOverrides: {
+        tooltip: {
+          color: "black",
+          fontSize: "13px",
+          border: "1px solid black",
+        },
+      },
+    },
+  },
+});
 
 function Charts(props) {
-  let max = props?.data?.reduce(function (prev, current) {
-    if (+current?.[props.keyName] > +prev?.[props.keyName]) {
-      return current;
-    } else {
-      return prev;
-    }
-  });
-
+  let max = parseInt(props?.data?.[0]?.[props?.keyName]);
   return (
     <div className="line">
-      <Box sx={{ width: 330 }} className="box">
-        <Typography align="center" variant="h6" className="typo">
-          Top 5 Venues with Most{" "}
-        </Typography>
+      <div className="line1">
+        <Box sx={{ width: 350 }} className="box">
+          <Typography
+            display="block"
+            align="center"
+            variant="h6"
+            className="typo"
+          >
+            Most {""}
+            {props.name}
+            <ThemeProvider theme={theme2}>
+              <Tooltip
+                className="toolTip"
+                wrapperStyle={{ backgroundColor: "white" }}
+                componentsProps={{
+                  tooltip: {
+                    sx: {
+                      bgcolor: "common.white",
+                      "& .MuiTooltip-arrow": {
+                        color: "common.white",
+                      },
+                    },
+                  },
+                }}
+                title={`Top 5 venues with most ${props.name}`}
+              >
+                {/* <IconButton  > */}
+                <InfoIcon sx={{ backgroundColor: "white", color: "grey" }} />
+                {/* </IconButton> */}
+              </Tooltip>
+            </ThemeProvider>
+          </Typography>
 
-        <Typography
-          display="block"
-          align="center"
-          variant="h6"
-          className="typo"
-        >
-          {props.name}
-        </Typography>
-
-        {props?.data?.map((user) => (
-          <Box>
-            <Typography
-              display="block"
-              align="left"
-              variant="h7"
-              className="typo"
-              color={props.textColor}
-            >
-              {user?.[props.keyName]}
-            </Typography>
-            <Typography
-              display="block"
-              align="left"
-              variant="h10"
-              className="typo"
-              color={props.textColor}
-            >
-              {user?.venueName}
-            </Typography>
-            <LinearProgress
-              color={props.color}
-              style={{ paddingBottom: 2, marginBottom: 2 }}
-              variant="determinate"
-              value={parseInt(
-                (user?.[props.keyName] / parseInt(max[props?.keyName])) * 100
-              )}
-            />
-          </Box>
-        ))}
-      </Box>
+          {props?.data?.map((user) => (
+            <Box className="box1">
+              <Typography
+                display="block"
+                align="left"
+                variant="h7"
+                className="typo11"
+                color={props.textColor}
+                style={{ marginBottom: props.setMargin }}
+              >
+                <span className="span1" style={{ display: props.display$ }}>
+                  $
+                </span>
+                {props.display$ !== "none" && props.displayHr !== "none"
+                  ? parseFloat(user?.[props.keyName]).toFixed(2)
+                  : user?.[props.keyName]}
+                {/* <span className="span" style={{ display: props.displayHr }}>
+                  /hr
+                </span> */}
+              </Typography>
+              <Typography
+                display="block"
+                align="left"
+                variant="h10"
+                className="typo12"
+                color={props.textColor}
+              >
+                {user?.venueName}
+              </Typography>
+              <ProgressBar
+                label="Full progressbar"
+                className="typo13"
+                visualParts={[
+                  {
+                    percentage: `${parseInt(
+                      (user?.[props.keyName] / parseInt(max)) * 100
+                    )}%`,
+                    color: props.textColor,
+                  },
+                ]}
+              />
+            </Box>
+          ))}
+        </Box>
+      </div>
 
       <Link
         href="/venue"

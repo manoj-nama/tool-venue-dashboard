@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const httpAuth = axios.create({
-  baseURL: "localhost:3000/home",
+  //   baseURL: "localhost:3000/home",
   timeout: 30000,
 });
 

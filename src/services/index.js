@@ -1,3 +1,11 @@
+import { httpAuth } from "../utils/http-utility";
+import {
+  COUNT_API_URL,
+  USER_API_URL,
+  BET_API_URL,
+  AMOUNT_API_URL,
+} from "../constant";
+
 const data = {
   most_placed_bets: [
     { venueId: 12345, venueName: "venue1", frequency_of_bets: "900" },
@@ -77,6 +85,43 @@ const data = {
     },
   ],
 };
+
+export const getUserVanueCounts = async () => {
+  try {
+    let res = await httpAuth.get(COUNT_API_URL);
+    return res?.data;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const getUserStats = async () => {
+  try {
+    let res = await httpAuth.get(USER_API_URL);
+    return res?.data;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const getBetsStats = async () => {
+  try {
+    let res = await httpAuth.get(BET_API_URL);
+    return res?.data;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const getUserAmount = async () => {
+  try {
+    let res = await httpAuth.get(AMOUNT_API_URL);
+    return res?.data;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
 export const getVenuStats = () => {
   try {
     return data;
