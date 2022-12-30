@@ -83,24 +83,27 @@ const Home = () => {
           textColor={"#ed6c03"}
           display$={"none"}
           displayHr={"none"}
+          setMargin={1}
         />
         <Charts
-          name="Bets Placed/Hr"
+          name="Bets Placed"
           data={betStats}
           keyName={"frequency_of_bets"}
           color={"primary"}
           textColor={"#1876d2"}
           display$={"none"}
           displayHr={"contents"}
+          setMargin={0}
         />
         <Charts
-          name="Amount Placed on Bets/Hr"
+          name="Amount Placed on Bets"
           data={amountStats}
           keyName={"frequency_of_total_amount_spent"}
           color={"success"}
           textColor={"#2f7c32"}
           display$={"contents"}
           displayHr={"contents"}
+          setMargin={0}
         />
       </div>
     </div>

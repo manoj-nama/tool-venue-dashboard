@@ -38,12 +38,11 @@ const theme2 = createTheme({
 });
 
 function Charts(props) {
-  let max = props?.data?.[0]?.[props?.keyName];
-
+  let max = parseInt(props?.data?.[0]?.[props?.keyName]);
   return (
     <div className="line">
       <div className="line1">
-        <Box sx={{ width: 330 }} className="box">
+        <Box sx={{ width: 350 }} className="box">
           <Typography
             display="block"
             align="center"
@@ -69,7 +68,7 @@ function Charts(props) {
                 title={`Top 5 venues with most ${props.name}`}
               >
                 {/* <IconButton  > */}
-                <InfoIcon sx={{ backgroundColor: "white" }} />
+                <InfoIcon sx={{ backgroundColor: "white", color: "grey" }} />
                 {/* </IconButton> */}
               </Tooltip>
             </ThemeProvider>
@@ -83,6 +82,7 @@ function Charts(props) {
                 variant="h7"
                 className="typo11"
                 color={props.textColor}
+                style={{ marginBottom: props.setMargin }}
               >
                 <span className="span1" style={{ display: props.display$ }}>
                   $
@@ -90,9 +90,9 @@ function Charts(props) {
                 {props.display$ !== "none" && props.displayHr !== "none"
                   ? parseFloat(user?.[props.keyName]).toFixed(2)
                   : user?.[props.keyName]}
-                <span className="span" style={{ display: props.displayHr }}>
+                {/* <span className="span" style={{ display: props.displayHr }}>
                   /hr
-                </span>
+                </span> */}
               </Typography>
               <Typography
                 display="block"
@@ -109,8 +109,7 @@ function Charts(props) {
                 visualParts={[
                   {
                     percentage: `${parseInt(
-                      (user?.[props.keyName] / parseInt(max[props?.keyName])) *
-                        100
+                      (user?.[props.keyName] / parseInt(max)) * 100
                     )}%`,
                     color: props.textColor,
                   },
