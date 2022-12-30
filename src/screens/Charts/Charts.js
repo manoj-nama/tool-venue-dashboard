@@ -87,7 +87,9 @@ function Charts(props) {
                 <span className="span1" style={{ display: props.display$ }}>
                   $
                 </span>
-                {user?.[props.keyName]}
+                {props.display$ !== "none" && props.displayHr !== "none"
+                  ? parseFloat(user?.[props.keyName]).toFixed(2)
+                  : user?.[props.keyName]}
                 <span className="span" style={{ display: props.displayHr }}>
                   /hr
                 </span>
