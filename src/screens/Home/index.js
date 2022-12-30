@@ -3,20 +3,26 @@ import "./Home.css";
 import img from "./logo.png";
 import Charts from "../Charts/Charts.js";
 import { useEffect } from "react";
-import { getVenuStats } from "../../services";
+import { getVenuStats, getUserVanueCounts } from "../../services";
 
 const Home = () => {
   const [venuStats, setVenuStats] = React.useState();
+  const [venuCounts, setVenuCounts] = React.useState();
 
-  const getSatats = () => {
-    let res = getVenuStats();
+  const getSatats = async () => {
+    let res = await getVenuStats();
     setVenuStats(res);
   };
 
+  const getCounts = async () => {
+    let res = await getUserVanueCounts();
+    setVenuCounts(res);
+  };
+
   useEffect(() => {
+    getCounts();
     getSatats();
   }, []);
-
   return (
     <div className="container">
       <div className="test">
@@ -26,11 +32,11 @@ const Home = () => {
         <h1>Top Venues</h1>
         <div className="Users1">
           <div className="rectangle">
-            <p>Number</p>
+            <p>{venuCounts?.userCount}</p>
           </div>
           <div className="border"></div>
           <div className="rectangle">
-            <p>Number</p>
+            <p>{venuCounts?.venueCount}</p>
           </div>
         </div>
         <div className="Users12">

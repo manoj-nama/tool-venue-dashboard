@@ -3,11 +3,10 @@ import Box from "@mui/material/Box";
 import { Typography } from "@mui/material";
 import { Link } from "@mui/material";
 import "./Charts.css";
-import { createTheme } from "@mui/material/styles";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 import ProgressBar from "../Components/progressiveBar";
-import InfoIcon from '@mui/icons-material/Info';
-import IconButton from '@mui/material/IconButton';
-import Tooltip from '@mui/material/Tooltip';
+import InfoIcon from "@mui/icons-material/Info";
+import Tooltip from "@mui/material/Tooltip";
 
 const theme = createTheme({
   status: {
@@ -21,6 +20,19 @@ const theme = createTheme({
     neutral: {
       main: "#64748B",
       contrastText: "#fff",
+    },
+  },
+});
+const theme2 = createTheme({
+  components: {
+    MuiTooltip: {
+      styleOverrides: {
+        tooltip: {
+          backgroundColor: "white",
+          color: "black",
+          border: "1px solid #dadde9",
+        },
+      },
     },
   },
 });
@@ -38,19 +50,34 @@ function Charts(props) {
     <div className="line">
       <div className="line1">
         <Box sx={{ width: 330 }} className="box">
-         
           <Typography
             display="block"
             align="center"
             variant="h6"
             className="typo"
-          >Most {""}
+          >
+            Most {""}
             {props.name}
-            <Tooltip title="Top 5 venues with {props.name}" >
-      <IconButton  >
-        <InfoIcon  />
-      </IconButton>
-    </Tooltip>
+            <ThemeProvider theme={theme2}>
+              <Tooltip
+                className="toolTip"
+                componentsProps={{
+                  tooltip: {
+                    sx: {
+                      bgcolor: "common.white",
+                      "& .MuiTooltip-arrow": {
+                        color: "common.white",
+                      },
+                    },
+                  },
+                }}
+                title={`Top 5 venues with most ${props.name}`}
+              >
+                {/* <IconButton  > */}
+                <InfoIcon className="infoIcon" />
+                {/* </IconButton> */}
+              </Tooltip>
+            </ThemeProvider>
           </Typography>
 
           {props?.data?.map((user) => (
