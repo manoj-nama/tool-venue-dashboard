@@ -1,5 +1,5 @@
 *{
-    background-color: rgb(232,232,232);
+    background-color:white;
 
 }
 .container{
@@ -21,10 +21,42 @@
     background-color: rgb(18, 70, 15);
 }
 .test{
-    margin:auto;
+    
+    
     color:white;
     border-radius: 10px;
     text-align:center;
+    background-color: rgb(18, 70, 15);
+
+}
+.userpage{
+    padding-left: 230px;
+    top: 50%;
+    left: 50%;
+    float:right; 
+    width:330px;
+}
+.date{
+    background-color: rgb(18, 70, 15);
+    display:flex;
+    flex-direction:row;
+    justify-content: center;
+    gap:500px;
+}
+.date1,.date2{
+    display: flex; /* or inline-flex */
+    align-items: center; 
+    justify-content: center;
+    
+}
+
+
+.date1{
+    border-radius: 8px;
+    color:"black";
+    background-color: rgb(18, 70, 15);
+}
+.select{
     background-color: rgb(18, 70, 15);
 
 }
