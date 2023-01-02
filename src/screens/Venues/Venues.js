@@ -8,11 +8,19 @@ import Date from "../Date/Date.js";
 import { Typography } from "@mui/material";
 import SearchIcon from '@mui/icons-material/Search';
 import { Select, MenuItem } from '@mui/material';
+import InputLabel from '@mui/material/InputLabel';
+import FormControl from '@mui/material/FormControl';
 
 //import IconButton from '@mui/material/IconButton';
 import InputField from '@mui/material/InputBase';
 
 function Venues() {
+  const [age, setAge] = React.useState('');
+
+  const handleChange = (event) => {
+    setAge(event.target.value);
+  };
+    
   return (
     <div className='container'>
         <div className='test'>
@@ -41,8 +49,33 @@ function Venues() {
           </div>
           <br/>
           
-          <div className="select">
+          <div className="sort">
+            <div className='sort1'>
+            <InputLabel className="inpu">Sort By </InputLabel>
+
+            <FormControl  size="small" variant="standard" className="typos">
+
+                <Select
+                  labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={age}
+                    label="Sort By"
+                    onChange={handleChange}
+                    >
+                <MenuItem sx={{color:"gray"}} value=""><em>None</em></MenuItem>
+                <MenuItem sx={{color:"gray"}}value={"Ascending"}>Ascending</MenuItem>
+                <MenuItem sx={{color:"gray"}}value={"Descending"}>Descending</MenuItem>
+                </Select>
+              </FormControl>
+            </div>
+            
+            <div className='sort2'>
+              
+            </div>
           
+          </div>
+          <div>
+
           </div>
           </div>
 
@@ -69,5 +102,5 @@ function Venues() {
 
             
 
-export default Venues
+export default Venues;
 

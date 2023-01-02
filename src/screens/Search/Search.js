@@ -3,7 +3,10 @@ import SearchIcon from '@mui/icons-material/Search';
 import InputBase from '@mui/material/InputBase';
 import "./Search.css"
 
+
+
 function App() {
+  
   return (
     
         <div className="search">
@@ -17,6 +20,8 @@ function App() {
             <div className="searchIcon">
               <SearchIcon />
             </div>
+
+
           </div>
         
   
