@@ -1,29 +1,40 @@
-import React from 'react';
-import { Typography } from "@mui/material";
-import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
-import { LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import React, { useState } from "react";
+import PropTypes from "prop-types";
 
+import "react-date-range/dist/styles.css"; // main css file
+import "react-date-range/dist/theme/default.css"; // theme css file
+import { DateRangePicker } from "react-date-range";
+import { addDays, subDays } from "date-fns";
 
-function Date() {
+const Calendar = ({ onChange }) => {
+  const [state, setState] = useState([
+    {
+      startDate: subDays(new Date(), 7),
+      endDate: addDays(new Date(), 1),
+      key: "selection",
+    },
+  ]);
+
+  const handleOnChange = (ranges) => {
+    const { selection } = ranges;
+    onChange(selection);
+    setState([selection]);
+  };
+
   return (
-    <div>
-        <Typography sx={{color:"gray",backgroundColor:"white", width:"110px"}}>
-            Select Date
-        </Typography>
-        
-        
-        
-        
-    </div>
-  )
-}
+    <DateRangePicker
+      onChange={handleOnChange}
+      showSelectionPreview={true}
+      moveRangeOnFirstSelection={false}
+      months={2}
+      ranges={state}
+      direction="horizontal"
+    />
+  );
+};
 
-export default Date
-/*
-<LocalizationProvider 
-  dateAdapter={AdapterDayjs}
-      localeText={{ start: 'Check-in', end: 'Check-out' }}
-        >
-          <DesktopDatePicker/>
-        </LocalizationProvider>*/
+Calendar.propTypes = {
+  onChange: PropTypes.func,
+};
+
+export default Calendar;
