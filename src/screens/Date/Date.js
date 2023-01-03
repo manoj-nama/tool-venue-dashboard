@@ -49,13 +49,27 @@ const DateRangePickerComp = () => {
 
   return (
     <div className="calendarWrap" >
-
+      <div className="wrapp">
+        <label className="label1"> Start Date
       <input
-        value={`${format(range[0].startDate, "MM/dd/yyyy")} to ${format(range[0].endDate, "MM/dd/yyyy")}`}
+        value={`${format(range[0].startDate, "MM/dd/yyyy")} `}
+        readOnly
+        className="inputBox"
+        
+        onClick={ () => setOpen(open => !open) }
+      />
+      </label>
+     
+      <label className="label2"> End Date
+      <input
+        value={` ${format(range[0].endDate, "MM/dd/yyyy")}`}
         readOnly
         className="inputBox"
         onClick={ () => setOpen(open => !open) }
       />
+      </label>
+      </div>
+      <br/>
 
       <div ref={refOne}>
         {open && 
@@ -64,7 +78,7 @@ const DateRangePickerComp = () => {
             editableDateInputs={true}
             moveRangeOnFirstSelection={false}
             ranges={range}
-            months={2}
+            months={1}
             direction="horizontal"
             className="calendarElement"
           />

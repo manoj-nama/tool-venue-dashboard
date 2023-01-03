@@ -1,13 +1,27 @@
 .calendarWrap{
     background-color: rgb(18, 70, 15);
-    width:510px;
-   
+    width:500px;
+    justify-content: center;
+    
+
 }
 .inputBox{
+    display:flex;
+    height:20px;
     font-size: 20px;
+    
+    text-align: center;
 }
 .calendarElement{
     color:black;
+}
+.wrapp{
+    display:flex;
+}
+.label1,.label2{
+    color:white;
+    font-weight: bold;
+    font-size:20px;
+    background-color: rgb(18, 70, 15);
 
-    
 }

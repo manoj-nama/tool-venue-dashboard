@@ -23,7 +23,7 @@ const Venues = () => {
           <img src={img} className="image" alt="logo"></img>
         </div>
         <h2>Venues with Most Users</h2>
-        <br />
+        
 
         <div className="date">
           <div className="date2">
