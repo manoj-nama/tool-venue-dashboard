@@ -23,6 +23,7 @@ const Calendar = ({ onChange }) => {
 
   return (
     <DateRangePicker
+      
       onChange={handleOnChange}
       showSelectionPreview={true}
       moveRangeOnFirstSelection={false}

@@ -1,3 +1,4 @@
+
 *{
     background-color:white;
 
@@ -6,8 +7,8 @@
     margin-bottom: 10px;
     margin-top:15px;
     margin-left:30px;
-    height:870px;
-    width:1730px;
+    height:880px;
+    width:1780px;
     border-radius: 10px;
     background-color: white;
     box-shadow: 0px 3px 3px -2px rgb(0 0 0 / 20%),
@@ -21,9 +22,8 @@
     background-color: rgb(18, 70, 15);
 }
 .test{
-    
-    
     color:white;
+    height:440px;
     border-radius: 10px;
     text-align:center;
     background-color: rgb(18, 70, 15);
@@ -37,24 +37,29 @@
     width:330px;
 }
 .date{
+    display: grid; 
+    grid-template-columns: 46% 54%; 
     background-color: rgb(18, 70, 15);
-    display:flex;
-    flex-direction:row;
-    justify-content: center;
-    gap:500px;
 }
 .date1,.date2{
+    padding: 10px; 
+    background-color: rgb(18, 70, 15);
+
+    
+}
+.date1{
+    display: flex;
+    flex-wrap: wrap;
+
+    background-color: rgb(18, 70, 15);
+}
+.date3{
     display: flex; /* or inline-flex */
     align-items: center; 
     justify-content: center;
-    
-}
-
-
-.date1{
-    border-radius: 8px;
-    color:"black";
-    background-color: rgb(18, 70, 15);
+    padding-left: 20px;
+    width:200px;
+    margin-left: 100px;
 }
 .select{
     background-color: rgb(18, 70, 15);
