@@ -1,7 +1,7 @@
 
 
 import React from 'react'
-import React from "react";
+
 import "./Venues.css";
 import img from "./logo.png";
 import Charts from "../Charts/Charts.js";
