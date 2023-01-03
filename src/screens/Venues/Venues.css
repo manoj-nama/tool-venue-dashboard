@@ -58,10 +58,31 @@
     align-items: center; 
     justify-content: center;
     padding-left: 20px;
-    width:200px;
+    width:280px;
+    height:63px;
     margin-left: 100px;
 }
 .select{
     background-color: rgb(18, 70, 15);
 
+}
+.dropdown{
+    display: flex; /* or inline-flex */
+    margin-left: 100px;
+    width:290px;
+    justify-content: center;
+    align-items: center;
+    gap:2px;
+    
+    color:gray
+}
+.row{
+   
+    margin-left: 36px;
+    width:200px;
+    color:gray;
+}
+.span{
+    color:gray;
+    padding-left: 10px;
 }

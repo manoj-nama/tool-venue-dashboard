@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { Typography } from "@mui/material";
-
+import Select from 'react-select';
 import "./Venues.css";
 import img from "./logo.png";
 import Charts from "../Charts/Charts.js";
@@ -13,6 +13,10 @@ import SearchIcon from "@mui/icons-material/Search";
 import InputField from "@mui/material/InputBase";
 
 const Venues = () => {
+  const actions = [
+    { label: "Ascending", value: 1 },
+    { label: "Descending", value: 2 }
+  ];
   const onChange = (ranges) => {
     console.log(ranges);
   };
@@ -35,6 +39,20 @@ const Venues = () => {
             />
 
             <SearchIcon sx={{ backgroundColor: "white", color: "grey" }} />
+            </div>
+            <br/>
+            <div class="dropdown">
+              <span>Sort by</span>
+              <div className="row">
+                
+                <div className="col">
+                <Select 
+                defaultValue={ {label: "Ascending", value: 1}}
+                options={ actions } 
+                label="Sort By" />
+              </div>
+      
+              </div>
             </div>
             
           </div>
