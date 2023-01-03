@@ -1,5 +1,3 @@
-
-
 import React from 'react'
 import { Typography } from "@mui/material";
 import Select from 'react-select';
@@ -17,9 +15,7 @@ const Venues = () => {
     { label: "Ascending", value: 1 },
     { label: "Descending", value: 2 }
   ];
-  const onChange = (ranges) => {
-    console.log(ranges);
-  };
+  
   return (
     <div className="container">
       <div className="test">
@@ -58,8 +54,17 @@ const Venues = () => {
           </div>
 
           <div className="date1">
-            <Date onChange={onChange} />
+            
+            <h3>Select date Range</h3>
+           
+            <div className="datech">
+              <Date  />
+            </div>
+            
           </div>
+
+          
+
         </div>
 
       </div>
@@ -77,3 +82,21 @@ export default Venues;
 
 
 
+/*
+
+<label className='label2'>
+                <span className='spans'>To</span>
+                <div className="row">
+                
+                <div className="col">
+                <Select 
+                openMenuOnClick={ <Date onChange={onChange} /> }
+                options={ [
+                  { label: "Dec 30,2022", value: 1 }] } 
+                label="Sort By" />
+                </div>
+      
+                </div>
+              </label>
+
+*/ 

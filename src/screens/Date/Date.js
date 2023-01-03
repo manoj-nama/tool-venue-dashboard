@@ -1,41 +1,78 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
+import { useEffect, useRef, useState } from 'react'
+import { DateRangePicker } from 'react-date-range'
+import "./Date.css"
+import format from 'date-fns/format'
+import { addDays } from 'date-fns'
 
-import "react-date-range/dist/styles.css"; // main css file
-import "react-date-range/dist/theme/default.css"; // theme css file
-import { DateRangePicker } from "react-date-range";
-import { addDays, subDays } from "date-fns";
+import 'react-date-range/dist/styles.css'
+import 'react-date-range/dist/theme/default.css'
 
-const Calendar = ({ onChange }) => {
-  const [state, setState] = useState([
+const DateRangePickerComp = () => {
+
+  // date state
+  const [range, setRange] = useState([
     {
-      startDate: subDays(new Date(), 7),
-      endDate: addDays(new Date(), 1),
-      key: "selection",
-    },
-  ]);
+      startDate: new Date(),
+      endDate: addDays(new Date(), 7),
+      key: 'selection'
+    }
+  ])
 
-  const handleOnChange = (ranges) => {
-    const { selection } = ranges;
-    onChange(selection);
-    setState([selection]);
-  };
+  // open close
+  const [open, setOpen] = useState(false)
+
+  // get the target element to toggle 
+  const refOne = useRef(null)
+
+  useEffect(() => {
+    // event listeners
+    document.addEventListener("keydown", hideOnEscape, true)
+    document.addEventListener("click", hideOnClickOutside, true)
+  }, [])
+
+  // hide dropdown on ESC press
+  const hideOnEscape = (e) => {
+    // console.log(e.key)
+    if( e.key === "Escape" ) {
+      setOpen(false)
+    }
+  }
+
+  // Hide dropdown on outside click
+  const hideOnClickOutside = (e) => {
+    // console.log(refOne.current)
+    // console.log(e.target)
+    if( refOne.current && !refOne.current.contains(e.target) ) {
+      setOpen(false)
+    }
+  }
 
   return (
-    <DateRangePicker
-      
-      onChange={handleOnChange}
-      showSelectionPreview={true}
-      moveRangeOnFirstSelection={false}
-      months={2}
-      ranges={state}
-      direction="horizontal"
-    />
-  );
-};
+    <div className="calendarWrap" >
 
-Calendar.propTypes = {
-  onChange: PropTypes.func,
-};
+      <input
+        value={`${format(range[0].startDate, "MM/dd/yyyy")} to ${format(range[0].endDate, "MM/dd/yyyy")}`}
+        readOnly
+        className="inputBox"
+        onClick={ () => setOpen(open => !open) }
+      />
 
-export default Calendar;
+      <div ref={refOne}>
+        {open && 
+          <DateRangePicker
+            onChange={item => setRange([item.selection])}
+            editableDateInputs={true}
+            moveRangeOnFirstSelection={false}
+            ranges={range}
+            months={2}
+            direction="horizontal"
+            className="calendarElement"
+          />
+        }
+      </div>
+
+    </div>
+  )
+}
+
+export default DateRangePickerComp
