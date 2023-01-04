@@ -1,9 +1,9 @@
-import React from 'react'
+import React from "react";
 import { Typography } from "@mui/material";
 import "./Venues.css";
 import img from "./logo.png";
-import Charts from "../Charts/Charts.js";
-import Search from "../Search/Search"
+import Table from "../Table";
+import Search from "../Search/Search";
 
 import Date from "../Date/Date.js";
 import SearchIcon from "@mui/icons-material/Search";
@@ -12,8 +12,6 @@ import SearchIcon from "@mui/icons-material/Search";
 import InputField from "@mui/material/InputBase";
 
 const Venues = () => {
-  
-  
   return (
     <div className="container">
       <div className="test">
@@ -21,55 +19,147 @@ const Venues = () => {
           <img src={img} className="image" alt="logo"></img>
         </div>
         <h2>Venues with Most Users</h2>
-        
 
         <div className="date">
           <div className="date2">
             <div className="date3">
-            <InputField
-              sx={{ ml: 1, flex: 1 }}
-              placeholder="Search for Venues"
-              inputProps={{ "aria-label": "search venues" }}
-            />
+              <InputField
+                sx={{ ml: 1, flex: 1 }}
+                placeholder="Search for Venues"
+                inputProps={{ "aria-label": "search venues" }}
+              />
 
-            <SearchIcon sx={{ backgroundColor: "white", color: "grey" }} />
+              <SearchIcon sx={{ backgroundColor: "white", color: "grey" }} />
             </div>
-            <br/>
-            <div className='dropdown' >
-            
-            <Search />
+            <br />
+            <div className="dropdown">
+              <Search />
             </div>
-           
-            
-            
           </div>
 
           <div className="date1">
-            
             <h3>Select date Range</h3>
-           
+
             <div className="datech">
-              <Date  />
+              <Date />
             </div>
-            
           </div>
-
-          
-
         </div>
-
       </div>
 
       <div className="userpage1">
-        
+        <Table
+          data={[
+            {
+              active_users: 21,
+              venueId: 1664,
+              venueName: "Pennant Hills Inn12",
+              venueType: "PubTab",
+              venueState: "NSW",
+            },
+            {
+              active_users: 19,
+              venueId: 2792,
+              venueName: "Walshs Hotel, Queanbeyan",
+              venueType: "PubTab",
+              venueState: "NSW",
+            },
+            {
+              active_users: 16,
+              venueId: 7588,
+              venueName: "Full Moon Hotel",
+              venueType: "PubTab",
+              venueState: "QLD",
+            },
+            {
+              active_users: 11,
+              venueId: 2601,
+              venueName: "Royal Oak Hotel, Double Bay",
+              venueType: "PubTab",
+              venueState: "NSW",
+            },
+            {
+              active_users: 10,
+              venueId: 1352,
+              venueName: "Wyong RLF Club, Kanwal",
+              venueType: "ClubTab",
+              venueState: "NSW",
+            },
+            {
+              active_users: 21,
+              venueId: 1664,
+              venueName: "Pennant Hills Inn",
+              venueType: "PubTab",
+              venueState: "NSW",
+            },
+            {
+              active_users: 19,
+              venueId: 2792,
+              venueName: "Walshs Hotel, Queanbeyan",
+              venueType: "PubTab",
+              venueState: "NSW",
+            },
+            {
+              active_users: 16,
+              venueId: 7588,
+              venueName: "Full Moon Hotel",
+              venueType: "PubTab",
+              venueState: "QLD",
+            },
+            {
+              active_users: 11,
+              venueId: 2601,
+              venueName: "Royal Oak Hotel, Double Bay",
+              venueType: "PubTab",
+              venueState: "NSW",
+            },
+            {
+              active_users: 10,
+              venueId: 1352,
+              venueName: "Wyong RLF Club, Kanwal",
+              venueType: "ClubTab",
+              venueState: "NSW",
+            },
+            {
+              active_users: 21,
+              venueId: 1664,
+              venueName: "Pennant Hills Inn",
+              venueType: "PubTab",
+              venueState: "NSW",
+            },
+            {
+              active_users: 19,
+              venueId: 2792,
+              venueName: "Walshs Hotel, Queanbeyan",
+              venueType: "PubTab",
+              venueState: "NSW",
+            },
+            {
+              active_users: 16,
+              venueId: 7588,
+              venueName: "Full Moon Hotel",
+              venueType: "PubTab",
+              venueState: "QLD",
+            },
+            {
+              active_users: 11,
+              venueId: 2601,
+              venueName: "Royal Oak Hotel, Double Bay",
+              venueType: "PubTab",
+              venueState: "NSW",
+            },
+            {
+              active_users: 10,
+              venueId: 1352,
+              venueName: "Wyong RLF Club, Kanwal1222",
+              venueType: "ClubTab",
+              venueState: "NSW",
+            },
+          ]}
+        />
       </div>
     </div>
   );
 };
 
-            
-
 export default Venues;
-
-
-

@@ -24,6 +24,7 @@
 }
 .wrapp{
     display:flex;
+    background-color: rgb(18, 70, 15);
 }
 .label1,.label2{
     color:white;
