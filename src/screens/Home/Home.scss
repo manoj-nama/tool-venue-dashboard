@@ -1,0 +1,69 @@
+.landing {
+	justify-content: center;
+	min-height: 350px;
+
+	.totalUsers {
+		transform: translate(-10px, -80px);
+	}
+
+	.totalVenues {
+		transform: translate(20px, 30px);
+	}
+
+	.divider {
+		display: flex;
+		height: 300px;
+		width: 2px;
+		background: #ddd;
+		transform: rotate(25deg) translate(15px, 20px);
+	}
+
+	.metric {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+
+		.value {
+			margin: 0;
+			font-weight: bold;
+
+			&.userCount {
+				font-size: 126px;
+				color: #4A7AD2;
+			}
+
+			&.venueCount {
+				font-size: 104px;
+				color: #64C466;
+			}
+		}
+
+		.label {
+			margin: 0;
+			font-size: 24px;
+			margin-top: -20px;
+			margin-right: 15px;
+			text-align: right;
+			font-family: 'Open Sans', sans-serif;
+		}
+	}
+}
+
+.metrics {
+	display: flex;
+	max-width: 1400px;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	align-items: center;
+	font-family: 'Open Sans', sans-serif;
+}
+
+.dashboard-header {
+	font-family: 'Open Sans', sans-serif;
+	text-align: center;
+	border-bottom: 1px solid #ddd;
+	margin: 0;
+	padding: 10px 0;
+	margin-bottom: 10px;
+}

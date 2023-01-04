@@ -1,32 +1,44 @@
 import * as React from "react";
-import "./Home.css";
-import img from "./logo.png";
+import "./Home.scss";
+import img from "./logo.svg";
 import Charts from "../Charts/Charts.js";
 import { useEffect } from "react";
 import {
-  getVenuStats,
-  getUserVanueCounts,
+  getActiveUserVenueCounts,
   getUserStats,
-  getBetsStats,
-  getUserAmount,
+  getBetsPlaced,
+  getAmountSpent,
 } from "../../services";
 
+export const toCountString = (count) => {
+  const outCount = (typeof count === "string" ? parseInt(count, 10) : count);
+  if (!outCount) {
+    return "0";
+  } else if (outCount <= 1000) {
+    return outCount.toString();
+  } else if (outCount <= 9000) {
+    return outCount.toLocaleString();
+  } else {
+    return `${(outCount / 1000).toFixed(1)}k`;
+  }
+};
+
 const Home = () => {
-  const [venuStats, setVenuStats] = React.useState();
+  const didMountRef = React.useRef(false);
   const [userStats, setUserStats] = React.useState();
   const [betStats, setBetStats] = React.useState();
   const [amountStats, setAmountStats] = React.useState();
+  const [activeCount, setActiveCount] = React.useState({
+    userCount: 0,
+    venueCount: 0,
+  });
 
-  const [venuCounts, setVenuCounts] = React.useState();
-
-  const getSatats = async () => {
-    let res = await getVenuStats();
-    setVenuStats(res);
-  };
-
-  const getCounts = async () => {
-    let res = await getUserVanueCounts();
-    setVenuCounts(res);
+  const getActiveCount = async () => {
+    let res = await getActiveUserVenueCounts();
+    setActiveCount({
+      userCount: toCountString(res.userCount || 0),
+      venueCount: toCountString(res.venueCount || 0),
+    });
   };
 
   const getStatsForUser = async () => {
@@ -34,51 +46,58 @@ const Home = () => {
     setUserStats(res?.active_users);
   };
 
-  const getStatsBetsPlaced = async () => {
-    let res = await getBetsStats();
+  const getBetsPlacedStats = async () => {
+    let res = await getBetsPlaced();
     setBetStats(res?.data);
   };
 
-  const getStatsForAmountPlaced = async () => {
-    let res = await getUserAmount();
+  const getAmountSpentStats = async () => {
+    let res = await getAmountSpent();
     setAmountStats(res?.data);
   };
 
   useEffect(() => {
-    getCounts();
-    getSatats();
-    getStatsForUser();
-    getStatsBetsPlaced();
-    getStatsForAmountPlaced();
+    if (!didMountRef.current) {
+      // This is to prevent double mount under strict mode with React18 for Dev mode
+      didMountRef.current = true;
+
+      getActiveCount();
+      getStatsForUser();
+      getBetsPlacedStats();
+      getAmountSpentStats();
+    }
   }, []);
+
   return (
     <div className="container">
-      <div className="test">
-        <div className="imagebg">
+      <div className="section">
+      </div>
+      <div className="header">
+        <div className="logo">
           <img src={img} className="image" alt="logo here"></img>
         </div>
-        <h1>Top Venues</h1>
-        <div className="Users1">
-          <div className="rectangle">
-            <p>{venuCounts?.userCount}</p>
-          </div>
-          <div className="border"></div>
-          <div className="rectangle">
-            <p>{venuCounts?.venueCount}</p>
-          </div>
+      </div>
+      <div className="section landing">
+        <div className="metric totalUsers">
+          <p className="value userCount">{activeCount?.userCount}</p>
+          <p className="label userCount">Active Users</p>
         </div>
-        <div className="Users12">
-          <h2 className="act">Active Users</h2>
-          <div className="border1"></div>
-          <h2 className="act1">Number of Venues</h2>
+        <div className="divider"></div>
+        <div className="metric totalVenues">
+          <p className="value venueCount">{activeCount?.venueCount}</p>
+          <p className="label venueCount">Venues</p>
         </div>
       </div>
-      <br />
-      <div className="Users">
+
+      <div className="full-width">
+        <h2 className="dashboard-header">Top Venues</h2>
+      </div>
+      <div className="section metrics">
         <Charts
           name="Users"
           data={userStats}
-          keyName={"active_users"}
+          keyName={"venueId"}
+          maxValueKey={"active_users"}
           color={"warning"}
           textColor={"#ed6c03"}
           display$={"none"}
@@ -88,7 +107,8 @@ const Home = () => {
         <Charts
           name="Bets Placed"
           data={betStats}
-          keyName={"frequency_of_bets"}
+          keyName={"venueId"}
+          maxValueKey={"frequency_of_bets"}
           color={"primary"}
           textColor={"#1876d2"}
           display$={"none"}
@@ -98,7 +118,8 @@ const Home = () => {
         <Charts
           name="Amount Placed on Bets"
           data={amountStats}
-          keyName={"frequency_of_total_amount_spent"}
+          keyName={"venueId"}
+          maxValueKey={"frequency_of_total_amount_spent"}
           color={"success"}
           textColor={"#2f7c32"}
           display$={"contents"}
