@@ -77,9 +77,9 @@
     width:290px;
     justify-content: center;
     align-items: center;
-    gap:2px;
-    
-    color:gray
+    background-color: rgb(18, 70, 15);
+
+    color:rgb(54, 53, 63)
 }
 .row{
    
