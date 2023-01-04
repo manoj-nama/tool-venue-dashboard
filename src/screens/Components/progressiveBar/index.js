@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./ProgressBar.css";
+import "./ProgressBar.scss";
 
 const ProgressLine = ({
   label,
@@ -37,7 +37,7 @@ const ProgressLine = ({
   return (
     <>
       <div
-        className="progressVisualFull"
+        className="progress-container"
         // to change the background color dynamically
         style={{
           backgroundColor,
@@ -57,7 +57,7 @@ const ProgressLine = ({
                 // setting the actual color of bar part
                 backgroundColor: item.color,
               }}
-              className="progressVisualPart"
+              className="progress-bar"
             />
           );
         })}
