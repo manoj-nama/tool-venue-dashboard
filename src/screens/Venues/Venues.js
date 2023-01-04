@@ -82,21 +82,3 @@ export default Venues;
 
 
 
-/*
-
-<label className='label2'>
-                <span className='spans'>To</span>
-                <div className="row">
-                
-                <div className="col">
-                <Select 
-                openMenuOnClick={ <Date onChange={onChange} /> }
-                options={ [
-                  { label: "Dec 30,2022", value: 1 }] } 
-                label="Sort By" />
-                </div>
-      
-                </div>
-              </label>
-
-*/ 
