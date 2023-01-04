@@ -1,3 +1,4 @@
+
 import * as React from "react";
 import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
@@ -9,7 +10,7 @@ import TableHead from "@mui/material/TableHead";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import ProgressBar from "../Components/progressiveBar";
-
+import "./Table.css";
 const columns = [
   { id: "name", label: "Name", minWidth: 170 },
   { id: "code", label: "ISO\u00a0Code", minWidth: 100 },
@@ -153,16 +154,30 @@ export default function StickyHeadTable({ data }) {
         </Table>
       </TableContainer>
       <div>
-        <TablePagination
-          style={{ marginRight: 200 }}
-          rowsPerPageOptions={[10]}
-          component="div"
-          count={rows.length}
-          rowsPerPage={rowsPerPage}
-          page={page}
-          onPageChange={handleChangePage}
-          onRowsPerPageChange={handleChangeRowsPerPage}
-        />
+        <div className="btn">
+          <div className="btns">
+            <button className="btn1">Prev</button>
+
+            <button className="btn2">1</button>
+
+            <button className="btn2">2</button>
+            
+            <>...  </>
+
+            <button className="btn3">Next</button>
+          </div>
+
+          <TablePagination
+            style={{ marginRight: 200 }}
+            rowsPerPageOptions={[10]}
+            component="div"
+            count={rows.length}
+            rowsPerPage={rowsPerPage}
+            page={page}
+            onPageChange={handleChangePage}
+            onRowsPerPageChange={handleChangeRowsPerPage}
+          />
+        </div>
       </div>
     </>
     // </Paper>
