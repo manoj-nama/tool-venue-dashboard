@@ -1,8 +1,8 @@
 import React from 'react'
-import { Typography } from "@mui/material";
+//import { Typography } from "@mui/material";
 import "./Venues.css";
 import img from "./logo.png";
-import Charts from "../Charts/Charts.js";
+//import Charts from "../Charts/Charts.js";
 import Search from "../Search/Search"
 
 import Date from "../Date/Date.js";
@@ -53,9 +53,6 @@ const Venues = () => {
             </div>
             
           </div>
-
-          
-
         </div>
 
       </div>

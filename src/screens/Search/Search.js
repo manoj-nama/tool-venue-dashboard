@@ -4,7 +4,6 @@ import Select from "react-select";
 class SelectComponent extends React.Component {
   componentDidMount() {}
   render() {
-    //const { data } = this.props;
 
     const options = [
         { label: "Ascending", value: 1 },
@@ -19,9 +18,6 @@ class SelectComponent extends React.Component {
         text:"black",
         primary25: "#f3f3f3",
         primary: "blue"
-        
-  
-
 
       }
     });
