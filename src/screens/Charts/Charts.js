@@ -56,7 +56,7 @@ function Charts({
         </ThemeProvider>
       </div>
       <div className="chart">
-        <Box sx={{ width: 350 }} className="box">
+        <Box sx={{ width: 320 }} className="box">
           {data?.map((item) => (
             <Box className="chart-row" key={item[keyName]}>
               <Typography

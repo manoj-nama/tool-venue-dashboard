@@ -57,6 +57,7 @@
 	justify-content: space-around;
 	align-items: center;
 	font-family: 'Open Sans', sans-serif;
+	padding-bottom: 100px;
 }
 
 .dashboard-header {
@@ -66,4 +67,20 @@
 	margin: 0;
 	padding: 10px 0;
 	margin-bottom: 10px;
+}
+
+@media only screen and (max-width: 420px) {
+	.landing {
+		flex-direction: column;
+
+		.totalUsers,
+		.totalVenues {
+			transform: none;
+			align-items: center;
+		}
+
+		.divider {
+			display: none;
+		}
+	}
 }
