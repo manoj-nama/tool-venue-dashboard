@@ -24,6 +24,8 @@ const Venues = () => {
   const [tableData, setTabelData] = React.useState();
   const [searchValue, setSearchValue] = React.useState();
   const [selectedTabOnPageOpen, setSelectedTabOnPageOpen] = React.useState();
+  const [headingText, setHeadingText] = React.useState("");
+
   const [currentTab, setCurrentTab] = React.useState();
 
   const [applyDateFilter, setApplyDateFilter] = React.useState(false);
@@ -47,9 +49,7 @@ const Venues = () => {
   };
 
   const getVenueData = async (val, page) => {
-    console.log("valval-->", val);
     let currentPage = page ? page : findCurrentPage();
-    console.log("currentPage", currentPage);
     if (currentPage === "users") {
       let res = await getVenuesByActiveUser("search?text=" + val);
       setTabelData(res);
@@ -75,13 +75,15 @@ const Venues = () => {
   };
 
   const SelectedMatric = (value) => {
-    console.log("value-->", value);
     let page = "users";
     if (value === 0) {
+      setHeadingText(" Users");
       page = "users";
     } else if (value === 1) {
+      setHeadingText(" Bets Placed");
       page = "bets";
     } else {
+      setHeadingText(" Amount Spent");
       page = "amount";
     }
     getVenueData(searchValue, page);
@@ -91,7 +93,6 @@ const Venues = () => {
   const getDateRange = (data, type) => {
     let filters = { ...filter };
     if (type === "dateRange") {
-      // console.log("ppppppp--->", new Date(data?.[0]?.startDate.toUTCString()));
       let obj = {
         startDate: data?.[0]?.startDate.toUTCString(),
         endDate: data?.[0]?.endDate.toUTCString(),
@@ -106,7 +107,6 @@ const Venues = () => {
 
   useEffect(() => {
     async function fetchMyAPI() {
-      console.log("filter--->", filter);
       let currentPage = findCurrentPage();
 
       setCurrentTab(currentPage);
@@ -140,28 +140,20 @@ const Venues = () => {
   }, [filter]);
 
   useEffect(() => {
-    console.log("comes inside the use");
     let currentPage = findCurrentPage();
 
     if (currentPage === "amount") {
       setSelectedTabOnPageOpen(2);
+      setHeadingText(" Amount Spent");
     } else if (currentPage === "users") {
+      setHeadingText(" Users");
       setSelectedTabOnPageOpen(0);
     } else if (currentPage === "bets") {
+      setHeadingText(" Bets Placed");
       setSelectedTabOnPageOpen(1);
     }
-    console.log(
-      "selectedTabOnPageOpenselectedTabOnPageOpen-->",
-      selectedTabOnPageOpen
-    );
   }, []);
-  console.log(
-    "tableDatatableData->",
-    tableData,
-    searchValue,
-    currentTab,
-    selectedTabOnPageOpen
-  );
+
   return (
     <div className="containers">
       <div className="section"></div>
@@ -174,7 +166,7 @@ const Venues = () => {
         {/* <div className="imagebg">
           <img src={img} className="image" alt="logo"></img>
         </div> */}
-        <h2>Venues with Most Users</h2>
+        <h2>Venues with Most{headingText}</h2>
 
         <div className="date">
           <div className="date2">
@@ -193,7 +185,7 @@ const Venues = () => {
               <SearchIcon sx={{ backgroundColor: "white", color: "grey" }} />
             </div>
             <br />
-            {selectedTabOnPageOpen ? (
+            {selectedTabOnPageOpen !== undefined ? (
               <Tab
                 selectedTabOnPageOpen={selectedTabOnPageOpen}
                 SelectedMatric={SelectedMatric}

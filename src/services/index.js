@@ -126,7 +126,6 @@ export const getAmountSpent = async () => {
 };
 
 export const getVenuesByAmount = async (data) => {
-  console.log("dddddaaaatttttaaa->", data);
   try {
     let res = await httpAuth.get(SEARCH_VENUE_BY_AMOUNT + data);
     return res;

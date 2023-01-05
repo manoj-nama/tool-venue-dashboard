@@ -39,11 +39,9 @@ function a11yProps(index) {
 }
 
 export default function BasicTabs({ SelectedMatric, selectedTabOnPageOpen }) {
-  console.log("tt-->", selectedTabOnPageOpen);
   const [value, setValue] = React.useState(selectedTabOnPageOpen);
 
   const handleChange = (event, newValue) => {
-    //console.log(event.target.value,"value-",newValue);
     setValue(newValue);
     SelectedMatric(newValue);
   };
@@ -56,7 +54,7 @@ export default function BasicTabs({ SelectedMatric, selectedTabOnPageOpen }) {
           onChange={handleChange}
           aria-label="basic tabs example"
         >
-          <Tab label="Active Users" {...a11yProps(0)} />
+          <Tab label="Most Users" {...a11yProps(0)} />
           <Tab label="Most Bets" {...a11yProps(1)} />
           <Tab label="Most Amount Spent" {...a11yProps(2)} />
         </Tabs>
