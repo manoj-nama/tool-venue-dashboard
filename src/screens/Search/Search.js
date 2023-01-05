@@ -1,42 +1,49 @@
 import React from "react";
-import Select from "react-select";
+import { useState,} from "react";
+import "./Search.css";
+import Form from "react-bootstrap/Form";
 
-class SelectComponent extends React.Component {
-  componentDidMount() {}
-  render() {
-    //const { data } = this.props;
+function Search() {
+  const [filterType, setFilterType] = useState("default");
+  const handleFilter = (e) => [setFilterType(e.target.value)];
 
-    const options = [
-        { label: "Ascending", value: 1 },
-        { label: "Desending", value: 2 }
-    ];
-
-    const theme = theme => ({
-      ...theme,
-      colors: {
-        
-        ...theme.colors,
-        text:"black",
-        primary25: "#f3f3f3",
-        primary: "blue"
-        
-  
-
-
-      }
-    });
-
-    return (
-      <Select
-        className="select"
-        defaultValue={options[1]}
-        options={options}
-        placeholder="Sort By"
-        theme={theme}
-      />
-    );
-  }
+  return (
+    <div className="wrapclass">
+      <Form.Select
+            onChange={handleFilter}
+            className="filterbody"
+            aria-label="Default select example"
+          >
+            <option className="filteroption" value="default">
+              Default
+            </option>
+            <option className="filteroption"  value="Ascending">
+             Ascending
+            </option>
+            <option className="filteroption"  value="Descending">
+             Descending
+            </option>
+          </Form.Select>
+    </div>
+  )
 }
 
-export default SelectComponent;
+export default Search
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
