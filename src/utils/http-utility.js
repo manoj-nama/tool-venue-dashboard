@@ -1,6 +1,4 @@
 import axios from "axios";
-const token = localStorage.getItem('auth');
-
 const httpAuth = axios.create({
   baseURL: process.env.REACT_APP_BASE_URL,
   timeout: 30000,
@@ -9,9 +7,12 @@ const httpAuth = axios.create({
   },
 });
 
-httpAuth.interceptors.response.use((conf) => {
+httpAuth.interceptors.request.use((conf) => {
+  const token = localStorage.getItem('auth');
   if(token){
-    conf.headers['authorisation'] = token;
+    conf.headers= {
+      'x-auth-token':`${token}`
+    }
   }
   return conf;
 });

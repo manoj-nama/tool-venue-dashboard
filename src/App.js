@@ -6,6 +6,7 @@ import Venues from "./screens/Venues/Venues";
 import Login from "./screens/Login";
 import "./index.scss";
 import ErrorBoundary from "./utils/errorBoundary";
+import ProtectedRoute from "./utils/ProtectedRoute";
 
 const AppWrapper = () => (
   <BrowserRouter history={history}>
@@ -21,10 +22,12 @@ const AppWrapper = () => (
       />
       <Route
         exact
-        path="/Home"
+        path="/dashboard"
         element={
           <ErrorBoundary>
-            <Home />
+            <ProtectedRoute>
+               <Home />
+            </ProtectedRoute>
           </ErrorBoundary>
         }
       />
@@ -33,7 +36,9 @@ const AppWrapper = () => (
         path="/venue"
         element={
           <ErrorBoundary>
-            <Venues />
+            <ProtectedRoute>
+               <Venues />
+            </ProtectedRoute>
           </ErrorBoundary>
         }
       />

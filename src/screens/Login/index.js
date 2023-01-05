@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { loginUser } from "../../services";
+import { useEffect } from "react";
 import "./Login.css";
 
 const Login = () => {
@@ -8,14 +9,32 @@ const Login = () => {
   const password = useRef();
   const navigate = useNavigate();
 
+  useEffect(()=>{
+    const userToken = localStorage.getItem('auth');
+    if (userToken) {
+         navigate('/dashboard');
+    }
+  },[])
+
   const onSubmit = async (e) => {
     e.preventDefault();
-    const data = await loginUser({
-      userName: userName.current.value,
-      password: password.current.value,
-    });
-    localStorage.setItem('auth',data.token);
-    navigate("/Home")
+    if(!userName.current.value||!password.current.value)
+    return;
+
+    try{
+      const data = await loginUser({
+        userName: userName.current.value,
+        password: password.current.value
+      });
+      if(!data||!data.token)throw 'Token is missing';
+      localStorage.setItem('auth',data.token);
+        navigate("/dashboard")
+      
+    }
+    catch(error){
+      console.log('Error : ',error);
+
+    }
     userName.current.value = '';
     password.current.value = '';
   };
