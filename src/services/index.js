@@ -46,27 +46,27 @@ export const getAmountSpent = async () => {
   }
 };
 
-export const getVenuesByAmount = async (data) => {
+export const getVenuesByAmount = async (path) => {
   try {
-    let res = await httpAuth.get(SEARCH_VENUE_BY_AMOUNT + data);
+    let res = await httpAuth.get(SEARCH_VENUE_BY_AMOUNT + path);
     return res;
   } catch (e) {
     console.log(e);
   }
 };
 
-export const getVenuesByBets = async (data) => {
+export const getVenuesByBets = async (path) => {
   try {
-    let res = await httpAuth.get(SEARCH_VENUE_BY_BET + data);
+    let res = await httpAuth.get(SEARCH_VENUE_BY_BET + path);
     return res;
   } catch (e) {
     console.log(e);
   }
 };
 
-export const getVenuesByActiveUser = async (data) => {
+export const getVenuesByActiveUser = async (path) => {
   try {
-    let res = await httpAuth.get(SEARCH_VENUE_BY_ACTIVE_USER + data);
+    let res = await httpAuth.get(SEARCH_VENUE_BY_ACTIVE_USER + path);
     return res;
   } catch (e) {
     console.log(e);

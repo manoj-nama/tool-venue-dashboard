@@ -1,6 +1,6 @@
 import * as React from "react";
 import "./Home.scss";
-import img from "./logo.svg";
+import img from "../../assets/logo.svg";
 import Charts from "../Charts/Charts.js";
 import { useEffect } from "react";
 import {
@@ -101,7 +101,7 @@ const Home = () => {
           textColor={"#ed6c03"}
           display$={"none"}
           displayHr={"none"}
-          route={"/users"}
+          route={"/venues?type=users"}
           setMargin={1}
         />
         <Charts
@@ -113,7 +113,7 @@ const Home = () => {
           textColor={"#1876d2"}
           display$={"none"}
           displayHr={"contents"}
-          route={"/bets"}
+          route={"/venues?type=bets"}
           setMargin={0}
         />
         <Charts
@@ -125,7 +125,7 @@ const Home = () => {
           textColor={"#2f7c32"}
           display$={"contents"}
           displayHr={"contents"}
-          route={"/amount"}
+          route={"/venues?type=amount"}
           setMargin={0}
         />
       </div>

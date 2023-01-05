@@ -11,7 +11,7 @@ import ProtectedRoute from "./utils/ProtectedRoute";
 const AppWrapper = () => (
   <BrowserRouter history={history}>
     <Routes>
-    <Route
+      <Route
         exact
         path="/"
         element={
@@ -26,37 +26,17 @@ const AppWrapper = () => (
         element={
           <ErrorBoundary>
             <ProtectedRoute>
-               <Home />
+              <Home />
             </ProtectedRoute>
           </ErrorBoundary>
         }
       />
       <Route
         exact
-        path="/users"
+        path="/venues"
         element={
           <ErrorBoundary>
             <Venues />
-          </ErrorBoundary>
-        }
-      />
-      <Route
-        exact
-        path="/bets"
-        element={
-          <ErrorBoundary>
-            <Venues />
-          </ErrorBoundary>
-        }
-      />
-      <Route
-        exact
-        path="/amount"
-        element={
-          <ErrorBoundary>
-            <ProtectedRoute>
-               <Venues />
-            </ProtectedRoute>
           </ErrorBoundary>
         }
       />

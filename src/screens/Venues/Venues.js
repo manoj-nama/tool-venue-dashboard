@@ -1,32 +1,45 @@
 import React, { useEffect } from "react";
-import { Typography } from "@mui/material";
 import "./Venues.css";
-import img from "./logo.png";
+import img from "../../assets/logo.svg";
 import Table from "../Table";
-import Search from "../Search/Search";
 import Tab from "../Tab";
-import { useParams, useLocation } from "react-router-dom";
-
 import Date from "../Date/Date.js";
-import SearchIcon from "@mui/icons-material/Search";
 
-//import IconButton from '@mui/material/IconButton';
+import SearchIcon from "@mui/icons-material/Search";
 import InputField from "@mui/material/InputBase";
+import { useNavigate } from "react-router-dom";
 import {
   getVenuesByAmount,
   getVenuesByBets,
   getVenuesByActiveUser,
 } from "../../services";
 
-const Venues = () => {
-  const useSearchParam = () => new URLSearchParams(useLocation().search);
-  const location = useLocation();
-  const [tableData, setTabelData] = React.useState();
-  const [searchValue, setSearchValue] = React.useState();
-  const [selectedTabOnPageOpen, setSelectedTabOnPageOpen] = React.useState();
-  const [headingText, setHeadingText] = React.useState("");
+const TABS = [
+  "users",
+  "bets",
+  "amount"
+];
+const TabFilters = {
+  users: 0,
+  bets: 1,
+  amount: 2,
+};
 
-  const [currentTab, setCurrentTab] = React.useState();
+const debounce = function (fn, d) {
+  let timer;
+  return function () {
+    let context = this;
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      fn.apply(context, arguments);
+    }, d);
+  };
+};
+
+const Venues = () => {
+  const navigate = useNavigate();
+  const getSearchParams = () => new URLSearchParams(window.location.search);
+  const [tableData, setTableData] = React.useState();
 
   const [applyDateFilter, setApplyDateFilter] = React.useState(false);
   const [filter, setFilter] = React.useState({
@@ -34,60 +47,81 @@ const Venues = () => {
       startDate: "",
       endDate: "",
     },
+    searchText: getSearchParams().get('searchText'),
+    tab: TABS[0],
   });
 
-  const currentPage = location?.pathname;
+  const getCurrentTab = () => {
+    const loc = getSearchParams();
+    return loc.get('type') || 'users';
+  };
 
-  const findCurrentPage = () => {
-    if (currentPage === "/users") {
-      return "users";
-    } else if (currentPage === "/bets") {
-      return "bets";
-    } else if (currentPage === "/amount") {
-      return "amount";
+  const getActiveFilters = () => {
+    const { searchText, dateRange } = filter;
+    const filtersToApply = {};
+    if (searchText) {
+      filtersToApply["text"] = searchText;
+    }
+    if (dateRange.startDate) {
+      filtersToApply["fromDateUTC"] = dateRange.startDate;
+    }
+    if (dateRange.endDate) {
+      filtersToApply["toDateUTC"] = dateRange.endDate;
+    }
+    return filtersToApply;
+  };
+
+  const getVenueData = async () => {
+    const sp = new URLSearchParams(getActiveFilters()).toString();
+    const path = `search${sp ? `?${sp}` : ''}`;
+
+    let res;
+    switch (filter.tab) {
+      case "users": {
+        res = await getVenuesByActiveUser(path);
+        break;
+      }
+      case "amount": {
+        res = await getVenuesByAmount(path);
+        break;
+      }
+      case "bets": {
+        res = await getVenuesByBets(path);
+        break;
+      }
+      default: {
+        console.log("Invalid tab");
+      }
+    }
+    if (res) {
+      setTableData(res);
     }
   };
 
-  const getVenueData = async (val, page) => {
-    let currentPage = page ? page : findCurrentPage();
-    if (currentPage === "users") {
-      let res = await getVenuesByActiveUser("search?text=" + val);
-      setTabelData(res);
-    } else if (currentPage === "bets") {
-      let res = await getVenuesByBets("search?text=" + val);
-      setTabelData(res);
-    } else if (currentPage === "amount") {
-      let res = await getVenuesByAmount("search?text=" + val);
-      setTabelData(res);
-    }
+  const updateSearchParams = (override) => {
+    const sp = new URLSearchParams({
+      ...getActiveFilters(),
+      ...override,
+    }).toString();
+
+    navigate(`/venues${sp ? `?${sp}` : ''}`);
   };
 
-  const debounce = function (value, d) {
-    let timer;
-    return function () {
-      let context = this,
-        args = arguments;
-      clearTimeout(timer);
-      timer = setTimeout(() => {
-        getVenueData.apply(context, arguments);
-      }, d);
-    };
+  const onSearchChange = (searchText) => {
+    setFilter(filter => ({
+      ...filter,
+      searchText,
+    }));
+    updateSearchParams({ searchText });
   };
 
-  const SelectedMatric = (value) => {
-    let page = "users";
-    if (value === 0) {
-      setHeadingText(" Users");
-      page = "users";
-    } else if (value === 1) {
-      setHeadingText(" Bets Placed");
-      page = "bets";
-    } else {
-      setHeadingText(" Amount Spent");
-      page = "amount";
-    }
-    getVenueData(searchValue, page);
-    setCurrentTab(page);
+  const onTabSelect = (value) => {
+    let tab = TABS[value] || TABS[0];
+    updateSearchParams({ tab });
+    setFilter(filter => ({
+      ...filter,
+      tab,
+    }));
   };
 
   const getDateRange = (data, type) => {
@@ -103,56 +137,21 @@ const Venues = () => {
     }
   };
 
-  const getVanues = debounce(getVenueData, 300);
+  const getVenues = debounce(getVenueData, 500);
 
   useEffect(() => {
-    async function fetchMyAPI() {
-      let currentPage = findCurrentPage();
-
-      setCurrentTab(currentPage);
-
-      if (filter?.dateRange?.startDate && filter?.dateRange?.endDate) {
-        let startDate = filter?.dateRange?.startDate;
-        let endDate = filter?.dateRange?.endDate;
-
-        if (currentPage === "amount" && applyDateFilter) {
-          let res = await getVenuesByAmount(
-            "fromDateUTC={" + startDate + "}&toDateUTC={" + endDate + "}"
-          );
-          setApplyDateFilter(false);
-          setTabelData(res);
-        } else if (currentPage === "users" && applyDateFilter) {
-          let res = await getVenuesByActiveUser(
-            "fromDateUTC={" + startDate + "}&toDateUTC={" + endDate + "}"
-          );
-          setApplyDateFilter(false);
-          setTabelData(res);
-        } else if (currentPage === "bets" && applyDateFilter) {
-          let res = await getVenuesByBets(
-            "fromDateUTC={" + startDate + "}&toDateUTC={" + endDate + "}"
-          );
-          setApplyDateFilter(false);
-          setTabelData(res);
-        }
-      }
-    }
-    fetchMyAPI();
+    getVenues();
   }, [filter]);
 
   useEffect(() => {
-    let currentPage = findCurrentPage();
-
-    if (currentPage === "amount") {
-      setSelectedTabOnPageOpen(2);
-      setHeadingText(" Amount Spent");
-    } else if (currentPage === "users") {
-      setHeadingText(" Users");
-      setSelectedTabOnPageOpen(0);
-    } else if (currentPage === "bets") {
-      setHeadingText(" Bets Placed");
-      setSelectedTabOnPageOpen(1);
-    }
+    let currentTab = getCurrentTab();
+    setFilter(filter => ({
+      ...filter,
+      tab: currentTab,
+    }));
   }, []);
+
+  const currentTab = filter.tab;
 
   return (
     <div className="containers">
@@ -163,11 +162,6 @@ const Venues = () => {
         </div>
       </div>
       <div className="test">
-        {/* <div className="imagebg">
-          <img src={img} className="image" alt="logo"></img>
-        </div> */}
-        <h2>Venues with Most{headingText}</h2>
-
         <div className="date">
           <div className="date2">
             <div className="date3">
@@ -175,10 +169,9 @@ const Venues = () => {
                 sx={{ ml: 1, flex: 1, backgroundColor: "white" }}
                 placeholder="Search for Venues"
                 inputProps={{ "aria-label": "search venues" }}
-                value={searchValue}
+                value={filter.searchText}
                 onChange={(e) => {
-                  getVanues(e.target.value);
-                  setSearchValue(e.target.value);
+                  onSearchChange(e.target.value);
                 }}
               />
 
@@ -186,15 +179,10 @@ const Venues = () => {
                 sx={{ backgroundColor: "white", color: "grey", marginTop: 2 }}
               />
             </div>
-            <br />
-            {selectedTabOnPageOpen !== undefined ? (
-              <Tab
-                selectedTabOnPageOpen={selectedTabOnPageOpen}
-                SelectedMatric={SelectedMatric}
-              />
-            ) : (
-              ""
-            )}
+            <Tab
+              selectedTabOnPageOpen={TabFilters[filter.tab]}
+              onTabSelect={onTabSelect}
+            />
           </div>
 
           <div className="date1">
@@ -230,9 +218,7 @@ const Venues = () => {
             type={"frequency_of_total_amount_spent"}
             data={tableData?.data?.data}
           />
-        ) : (
-          ""
-        )}
+        ) : null}
       </div>
     </div>
   );

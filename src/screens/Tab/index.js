@@ -38,19 +38,16 @@ function a11yProps(index) {
   };
 }
 
-export default function BasicTabs({ SelectedMatric, selectedTabOnPageOpen }) {
-  const [value, setValue] = React.useState(selectedTabOnPageOpen);
-
+export default function BasicTabs({ onTabSelect, selectedTabOnPageOpen }) {
   const handleChange = (event, newValue) => {
-    setValue(newValue);
-    SelectedMatric(newValue);
+    onTabSelect(newValue);
   };
 
   return (
     <Box sx={{ width: "100%" }}>
       <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
         <Tabs
-          value={value}
+          value={selectedTabOnPageOpen}
           onChange={handleChange}
           aria-label="basic tabs example"
         >

@@ -46,7 +46,6 @@ const DateRangePickerComp = ({ getDateRange, type }) => {
     }
   };
 
-  console.log("startDate-->", range);
   return (
     <div className="calendarWrap">
       <div className="wrapp">
