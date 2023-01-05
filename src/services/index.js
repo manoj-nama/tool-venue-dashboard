@@ -86,7 +86,7 @@ const data = {
   ],
 };
 
-export const getUserVanueCounts = async () => {
+export const getActiveUserVenueCounts = async () => {
   try {
     let res = await httpAuth.get(COUNT_API_URL);
     return res?.data;
@@ -104,7 +104,7 @@ export const getUserStats = async () => {
   }
 };
 
-export const getBetsStats = async () => {
+export const getBetsPlaced = async () => {
   try {
     let res = await httpAuth.get(BET_API_URL);
     return res?.data;
@@ -113,18 +113,10 @@ export const getBetsStats = async () => {
   }
 };
 
-export const getUserAmount = async () => {
+export const getAmountSpent = async () => {
   try {
     let res = await httpAuth.get(AMOUNT_API_URL);
     return res?.data;
-  } catch (e) {
-    console.log(e);
-  }
-};
-
-export const getVenuStats = () => {
-  try {
-    return data;
   } catch (e) {
     console.log(e);
   }

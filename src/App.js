@@ -3,6 +3,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import history from "./utils/history";
 import Home from "./screens/Home";
 import Venues from "./screens/Venues/Venues";
+import Details from "./screens/Details/Details";
+
 import "./index.scss";
 import ErrorBoundary from "./utils/errorBoundary";
 
@@ -27,6 +29,8 @@ const AppWrapper = () => (
           </ErrorBoundary>
         }
       />
+
+      <Route exact path="/details" element={<Details />} />
     </Routes>
   </BrowserRouter>
 );
