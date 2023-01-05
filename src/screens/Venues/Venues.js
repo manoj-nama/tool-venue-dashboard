@@ -172,7 +172,7 @@ const Venues = () => {
           <div className="date2">
             <div className="date3">
               <InputField
-                sx={{ ml: 1, flex: 1 }}
+                sx={{ ml: 1, flex: 1, backgroundColor: "white" }}
                 placeholder="Search for Venues"
                 inputProps={{ "aria-label": "search venues" }}
                 value={searchValue}
@@ -182,7 +182,9 @@ const Venues = () => {
                 }}
               />
 
-              <SearchIcon sx={{ backgroundColor: "white", color: "grey" }} />
+              <SearchIcon
+                sx={{ backgroundColor: "white", color: "grey", marginTop: 2 }}
+              />
             </div>
             <br />
             {selectedTabOnPageOpen !== undefined ? (
