@@ -94,7 +94,7 @@ const Home = () => {
       </div>
       <div className="section metrics">
         <Charts
-          name="Users"
+          name="Most Active Users"
           data={userStats}
           keyName={"venueId"}
           maxValueKey={"active_users"}
@@ -105,7 +105,7 @@ const Home = () => {
           setMargin={1}
         />
         <Charts
-          name="Bets Placed"
+          name="Most Bets Placed"
           data={betStats}
           keyName={"venueId"}
           maxValueKey={"frequency_of_bets"}
@@ -116,7 +116,7 @@ const Home = () => {
           setMargin={0}
         />
         <Charts
-          name="Amount Placed on Bets"
+          name="Most Amount Placed on Bets"
           data={amountStats}
           keyName={"venueId"}
           maxValueKey={"frequency_of_total_amount_spent"}

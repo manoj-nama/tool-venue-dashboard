@@ -35,7 +35,7 @@ function Charts({
   let max = parseInt(data?.[0]?.[maxValueKey]);
   return (
     <div className="chart-container">
-      <div className="label">Most {name}
+      <div className="label">{name}
         <ThemeProvider theme={theme2}>
           <Tooltip
             className="toolTip"
@@ -67,7 +67,7 @@ function Charts({
                 color={textColor}
                 style={{ marginBottom: setMargin }}
               >
-                <span className="span1" style={{ display: display$ }}>$</span>
+                <span className="prefix" style={{ display: display$ }}>$</span>
                 {display$ !== "none" && displayHr !== "none"
                   ? parseFloat(item?.[maxValueKey]).toFixed(2)
                   : item?.[maxValueKey]}
@@ -83,7 +83,7 @@ function Charts({
               </Typography>
               <ProgressBar
                 label="Full progressbar"
-                className="typo13"
+                className="progress-bar"
                 visualParts={[
                   {
                     percentage: `${parseInt(
