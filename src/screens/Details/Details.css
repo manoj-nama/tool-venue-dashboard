@@ -11,7 +11,7 @@
     height:900px;
     width:1730px;
     border-radius: 10px;
-    background-color: rgb(244, 244, 244);
+    background-color:white;
     box-shadow: 0px 3px 3px -2px rgb(0 0 0 / 20%),
 		0px 3px 4px 0px rgb(0 0 0 / 14%), 0px 1px 8px 0px rgb(0 0 0 / 12%);
 }
@@ -30,17 +30,21 @@
     border-radius: 10px;
 
 }
-
+.h2{
+    color:black;
+    font-size:25px;
+}
 .h2tag {
     background-color: rgb(244, 244, 244) !important;
 }
 
 .test {
     color: white;
-    height: 250px;
+    height: 100px;
     border-radius: 10px;
     text-align: center;
-    background-color: rgb(18, 70, 15);
+    background-color:white;
+    margin-bottom:10px;
 
 }
 
@@ -48,12 +52,28 @@
     display: grid;
     grid-template-columns: 70% 30%;
     height: 500px;
-    background-color: rgb(244, 244, 244);
+    background-color: white;
 
 }
 
 .table {
-    background-color: rgb(244, 244, 244);
+    background-color:white;
     margin: 15px;
+    border-radius:8px;
+    box-shadow: 0px 3px 3px -2px rgb(0 0 0 / 20%),
+		0px 3px 4px 0px rgb(0 0 0 / 14%), 0px 1px 8px 0px rgb(0 0 0 / 12%);
 
+    height:690px;
+
+}
+.map{
+    margin-top:15px;
+    height:580px;
+    margin-right:5px;
+}
+.header{
+    background-color: white;
+}
+.active{
+    display:flex;
 }
