@@ -67,7 +67,7 @@ function Charts({
                 color={textColor}
                 style={{ marginBottom: setMargin }}
               >
-                <span className="span1" style={{ display: display$ }}>$</span>
+                <span className="prefix" style={{ display: display$ }}>$</span>
                 {display$ !== "none" && displayHr !== "none"
                   ? parseFloat(item?.[maxValueKey]).toFixed(2)
                   : item?.[maxValueKey]}
@@ -83,7 +83,7 @@ function Charts({
               </Typography>
               <ProgressBar
                 label="Full progressbar"
-                className="typo13"
+                className="progress-bar"
                 visualParts={[
                   {
                     percentage: `${parseInt(
