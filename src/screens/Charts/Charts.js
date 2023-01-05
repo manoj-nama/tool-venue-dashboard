@@ -35,7 +35,7 @@ function Charts({
   let max = parseInt(data?.[0]?.[maxValueKey]);
   return (
     <div className="chart-container">
-      <div className="label">Most {name}
+      <div className="label">{name}
         <ThemeProvider theme={theme2}>
           <Tooltip
             className="toolTip"
