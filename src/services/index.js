@@ -4,6 +4,7 @@ import {
   USER_API_URL,
   BET_API_URL,
   AMOUNT_API_URL,
+  LOGIN_API_URL
 } from "../constant";
 
 const data = {
@@ -121,3 +122,12 @@ export const getAmountSpent = async () => {
     console.log(e);
   }
 };
+
+export const loginUser = async (userData) => {
+  try{
+    let res = await httpAuth.post(LOGIN_API_URL, userData);
+    return res?.data;
+  } catch (e) {
+    console.log(e);
+  }
+}
