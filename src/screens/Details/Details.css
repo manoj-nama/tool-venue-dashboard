@@ -1,56 +1,47 @@
-*{
-    background-color:white;
+.image {
+    width: 60px;
+    height: 50px;
+}
 
-}
-.container{
-    margin-bottom: 10px;
-    margin-top:15px;
-    margin-left:30px;
-    height:880px;
-    width:1780px;
-    border-radius: 10px;
-    background-color: rgb(244, 244, 244);
-    box-shadow: 0px 3px 3px -2px rgb(0 0 0 / 20%),
-		0px 3px 4px 0px rgb(0 0 0 / 14%), 0px 1px 8px 0px rgb(0 0 0 / 12%);
-}
-.image{
-    width:60px;
-    height:50px;
-}
-.imagebg{
-    margin-top:5px;
+.imagebg {
+    margin-top: 5px;
     background-color: rgb(18, 70, 15);
 }
-.info{
-    margin-left:10px;
-    width:180px;
-    height:48%;
-    color:rgb(9, 9, 9);
+
+.info {
+    margin-left: 10px;
+    width: 180px;
+    height: 48%;
+    color: rgb(9, 9, 9);
     background-color: rgb(244, 244, 244);
-    border:1px solid rgb(224, 220, 220);
-    border-radius:10px;
-    
-}
-.h2tag{
-    background-color: rgb(244, 244, 244)!important;
-}
-.test{
-    color:white;
-    height:180px;
+    border: 1px solid rgb(224, 220, 220);
     border-radius: 10px;
-    text-align:center;
+
+}
+
+.h2tag {
+    background-color: rgb(244, 244, 244) !important;
+}
+
+.test {
+    color: white;
+    height: 180px;
+    border-radius: 10px;
+    text-align: center;
     background-color: rgb(18, 70, 15);
 
 }
-.lowerview{
-    display: grid; 
-    grid-template-columns: 70% 30%; 
-    height:500px;
+
+.lowerview {
+    display: grid;
+    grid-template-columns: 70% 30%;
+    height: 500px;
     background-color: rgb(244, 244, 244);
 
 }
-.table{
+
+.table {
     background-color: rgb(244, 244, 244);
-    margin:15px;
+    margin: 15px;
 
 }
