@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Typography } from "@mui/material";
 import "./Venues.css";
 import img from "./logo.png";
@@ -10,8 +10,32 @@ import SearchIcon from "@mui/icons-material/Search";
 
 //import IconButton from '@mui/material/IconButton';
 import InputField from "@mui/material/InputBase";
+import { getVenues } from "../../services";
 
 const Venues = () => {
+  // const [searchOptions, setSearchOptions] = React.useState();
+
+  const getVenueData = async (val) => {
+    let res = await getVenues(val);
+    console.log("reasult--->", res);
+  };
+
+  const debounce = function (value, d) {
+    let timer;
+    return function () {
+      let context = this,
+        args = arguments;
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        getVenueData.apply(context, arguments);
+      }, d);
+    };
+  };
+
+  const getVanues = debounce(getVenueData, 300);
+
+  useEffect(() => {}, []);
+
   return (
     <div className="container">
       <div className="test">
@@ -27,6 +51,8 @@ const Venues = () => {
                 sx={{ ml: 1, flex: 1 }}
                 placeholder="Search for Venues"
                 inputProps={{ "aria-label": "search venues" }}
+                // value={searchOptions}
+                onChange={getVanues}
               />
 
               <SearchIcon sx={{ backgroundColor: "white", color: "grey" }} />

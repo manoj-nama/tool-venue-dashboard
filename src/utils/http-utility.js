@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const httpAuth = axios.create({
-  //   baseURL: "localhost:3000/home",
+  baseURL: process.env.REACT_APP_BASE_URL,
   timeout: 30000,
 });
 

@@ -1,4 +1,3 @@
-
 import * as React from "react";
 import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
@@ -61,7 +60,6 @@ const rows = [
 ];
 
 export default function StickyHeadTable({ data }) {
-  console.log("datta->");
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
@@ -161,8 +159,8 @@ export default function StickyHeadTable({ data }) {
             <button className="btn2">1</button>
 
             <button className="btn2">2</button>
-            
-            <>...  </>
+
+            <>... </>
 
             <button className="btn3">Next</button>
           </div>
