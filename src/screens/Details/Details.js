@@ -6,7 +6,7 @@ import Table from "../Table/Table"
 
 function Details() {
   return (
-    <div className="container">
+    <div className="containers">
       <div className="test">
         <div className="imagebg">
           <img src={img} className="image" alt="logo"></img>
