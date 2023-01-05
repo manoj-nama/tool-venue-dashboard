@@ -30,12 +30,14 @@ function Charts({
   display$,
   displayHr,
   setMargin,
-  maxValueKey
+  route,
+  maxValueKey,
 }) {
   let max = parseInt(data?.[0]?.[maxValueKey]);
   return (
     <div className="chart-container">
-      <div className="label">Most {name}
+      <div className="label">
+        Most {name}
         <ThemeProvider theme={theme2}>
           <Tooltip
             className="toolTip"
@@ -67,7 +69,9 @@ function Charts({
                 color={textColor}
                 style={{ marginBottom: setMargin }}
               >
-                <span className="span1" style={{ display: display$ }}>$</span>
+                <span className="span1" style={{ display: display$ }}>
+                  $
+                </span>
                 {display$ !== "none" && displayHr !== "none"
                   ? parseFloat(item?.[maxValueKey]).toFixed(2)
                   : item?.[maxValueKey]}
@@ -99,7 +103,7 @@ function Charts({
       </div>
 
       <Link
-        href="/venue"
+        href={route}
         sx={{
           bgcolor: "green",
           color: "white",

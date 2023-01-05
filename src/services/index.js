@@ -4,7 +4,9 @@ import {
   USER_API_URL,
   BET_API_URL,
   AMOUNT_API_URL,
-  SEARCH_VENUE,
+  SEARCH_VENUE_BY_AMOUNT,
+  SEARCH_VENUE_BY_BET,
+  SEARCH_VENUE_BY_ACTIVE_USER,
 } from "../constant";
 
 const data = {
@@ -123,10 +125,29 @@ export const getAmountSpent = async () => {
   }
 };
 
-export const getVenues = async (data) => {
+export const getVenuesByAmount = async (data) => {
+  console.log("dddddaaaatttttaaa->", data);
   try {
-    let res = await httpAuth.get(SEARCH_VENUE + data);
-    return res?.data;
+    let res = await httpAuth.get(SEARCH_VENUE_BY_AMOUNT + data);
+    return res;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const getVenuesByBets = async (data) => {
+  try {
+    let res = await httpAuth.get(SEARCH_VENUE_BY_BET + data);
+    return res;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const getVenuesByActiveUser = async (data) => {
+  try {
+    let res = await httpAuth.get(SEARCH_VENUE_BY_ACTIVE_USER + data);
+    return res;
   } catch (e) {
     console.log(e);
   }

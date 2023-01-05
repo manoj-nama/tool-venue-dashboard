@@ -101,6 +101,7 @@ const Home = () => {
           textColor={"#ed6c03"}
           display$={"none"}
           displayHr={"none"}
+          route={"/users"}
           setMargin={1}
         />
         <Charts
@@ -112,6 +113,7 @@ const Home = () => {
           textColor={"#1876d2"}
           display$={"none"}
           displayHr={"contents"}
+          route={"/bets"}
           setMargin={0}
         />
         <Charts
@@ -123,6 +125,7 @@ const Home = () => {
           textColor={"#2f7c32"}
           display$={"contents"}
           displayHr={"contents"}
+          route={"/amount"}
           setMargin={0}
         />
       </div>

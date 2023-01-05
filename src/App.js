@@ -20,7 +20,25 @@ const AppWrapper = () => (
       />
       <Route
         exact
-        path="/venue"
+        path="/users"
+        element={
+          <ErrorBoundary>
+            <Venues />
+          </ErrorBoundary>
+        }
+      />
+      <Route
+        exact
+        path="/bets"
+        element={
+          <ErrorBoundary>
+            <Venues />
+          </ErrorBoundary>
+        }
+      />
+      <Route
+        exact
+        path="/amount"
         element={
           <ErrorBoundary>
             <Venues />
