@@ -4,6 +4,7 @@ import "./Venues.css";
 import img from "./logo.png";
 import Table from "../Table";
 import Search from "../Search/Search";
+import Tab from "../Tab";
 import { useParams, useLocation } from "react-router-dom";
 
 import Date from "../Date/Date.js";
@@ -71,6 +72,18 @@ const Venues = () => {
   };
 
   const SelectedMatric = (value) => {
+    let page="users";
+    if (value===0){
+      page="users"
+    }
+    else if (value===1){
+      page="bets"
+    }
+    else{
+      
+      page="amount"
+      
+    }
     getVenueData(searchValue, value);
   };
 
@@ -124,16 +137,23 @@ const Venues = () => {
   }, [filter]);
   console.log("tableDatatableData->", tableData, searchValue);
   return (
-    <div className="container">
-      <div className="test">
-        <div className="imagebg">
-          <img src={img} className="image" alt="logo"></img>
+    <div className="containers">
+      <div className="section"></div>
+      <div className="header">
+        <div className="logo">
+          <img src={img} className="image" alt="logo here"></img>
         </div>
+      </div>
+      <div className="test">
+        {/* <div className="imagebg">
+          <img src={img} className="image" alt="logo"></img>
+        </div> */}
         <h2>Venues with Most Users</h2>
 
         <div className="date">
           <div className="date2">
             <div className="date3">
+              
               <InputField
                 sx={{ ml: 1, flex: 1 }}
                 placeholder="Search for Venues"
@@ -151,6 +171,7 @@ const Venues = () => {
             <div className="dropdown">
               <Search />
             </div>
+            <Tab SelectedMatric={SelectedMatric}/>
           </div>
 
           <div className="date1">
