@@ -3,18 +3,31 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import history from "./utils/history";
 import Home from "./screens/Home";
 import Venues from "./screens/Venues/Venues";
+import Login from "./screens/Login";
 import "./index.scss";
 import ErrorBoundary from "./utils/errorBoundary";
+import ProtectedRoute from "./utils/ProtectedRoute";
 
 const AppWrapper = () => (
   <BrowserRouter history={history}>
     <Routes>
-      <Route
+    <Route
         exact
         path="/"
         element={
           <ErrorBoundary>
-            <Home />
+            <Login />
+          </ErrorBoundary>
+        }
+      />
+      <Route
+        exact
+        path="/dashboard"
+        element={
+          <ErrorBoundary>
+            <ProtectedRoute>
+               <Home />
+            </ProtectedRoute>
           </ErrorBoundary>
         }
       />
@@ -41,7 +54,9 @@ const AppWrapper = () => (
         path="/amount"
         element={
           <ErrorBoundary>
-            <Venues />
+            <ProtectedRoute>
+               <Venues />
+            </ProtectedRoute>
           </ErrorBoundary>
         }
       />

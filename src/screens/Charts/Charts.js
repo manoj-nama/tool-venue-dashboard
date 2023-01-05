@@ -36,8 +36,7 @@ function Charts({
   let max = parseInt(data?.[0]?.[maxValueKey]);
   return (
     <div className="chart-container">
-      <div className="label">
-        Most {name}
+      <div className="label">{name}
         <ThemeProvider theme={theme2}>
           <Tooltip
             className="toolTip"
@@ -69,13 +68,13 @@ function Charts({
                 color={textColor}
                 style={{ marginBottom: setMargin }}
               >
-                <span className="span1" style={{ display: display$ }}>
-                  $
-                </span>
-                {display$ !== "none" && displayHr !== "none"
-                  ? parseFloat(item?.[maxValueKey]).toFixed(2)
-                  : item?.[maxValueKey]}
-              </Typography>
+                <span className="prefix" style={{ display: display$ }}>$</span>
+                {
+                  display$ !== "none" && displayHr !== "none"
+                    ? parseFloat(item?.[maxValueKey]).toFixed(2)
+                    : item?.[maxValueKey]
+                }
+              </Typography >
               <Typography
                 display="block"
                 align="left"
@@ -87,7 +86,7 @@ function Charts({
               </Typography>
               <ProgressBar
                 label="Full progressbar"
-                className="typo13"
+                className="progress-bar"
                 visualParts={[
                   {
                     percentage: `${parseInt(
@@ -97,10 +96,11 @@ function Charts({
                   },
                 ]}
               />
-            </Box>
-          ))}
-        </Box>
-      </div>
+            </Box >
+          ))
+          }
+        </Box >
+      </div >
 
       <Link
         href={route}
@@ -114,7 +114,7 @@ function Charts({
       >
         Show More{" "}
       </Link>
-    </div>
+    </div >
   );
 }
 

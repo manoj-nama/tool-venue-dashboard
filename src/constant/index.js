@@ -5,3 +5,4 @@ export const AMOUNT_API_URL = "bet-stats/amount-spent?limit=5";
 export const SEARCH_VENUE_BY_AMOUNT = "/bet-stats/amount-spent/";
 export const SEARCH_VENUE_BY_BET = "/bet-stats/bets-placed/";
 export const SEARCH_VENUE_BY_ACTIVE_USER = "/most-active-users/";
+export const LOGIN_API_URL = "login-user";
