@@ -23,6 +23,8 @@ const Venues = () => {
   const location = useLocation();
   const [tableData, setTabelData] = React.useState();
   const [searchValue, setSearchValue] = React.useState();
+  const [selectedTabOnPageOpen, setSelectedTabOnPageOpen] = React.useState();
+  const [currentTab, setCurrentTab] = React.useState();
 
   const [applyDateFilter, setApplyDateFilter] = React.useState(false);
   const [filter, setFilter] = React.useState({
@@ -31,6 +33,7 @@ const Venues = () => {
       endDate: "",
     },
   });
+
   const currentPage = location?.pathname;
 
   const findCurrentPage = () => {
@@ -72,19 +75,17 @@ const Venues = () => {
   };
 
   const SelectedMatric = (value) => {
-    let page="users";
-    if (value===0){
-      page="users"
+    console.log("value-->", value);
+    let page = "users";
+    if (value === 0) {
+      page = "users";
+    } else if (value === 1) {
+      page = "bets";
+    } else {
+      page = "amount";
     }
-    else if (value===1){
-      page="bets"
-    }
-    else{
-      
-      page="amount"
-      
-    }
-    getVenueData(searchValue, value);
+    getVenueData(searchValue, page);
+    setCurrentTab(page);
   };
 
   const getDateRange = (data, type) => {
@@ -107,6 +108,8 @@ const Venues = () => {
     async function fetchMyAPI() {
       console.log("filter--->", filter);
       let currentPage = findCurrentPage();
+
+      setCurrentTab(currentPage);
 
       if (filter?.dateRange?.startDate && filter?.dateRange?.endDate) {
         let startDate = filter?.dateRange?.startDate;
@@ -135,7 +138,30 @@ const Venues = () => {
     }
     fetchMyAPI();
   }, [filter]);
-  console.log("tableDatatableData->", tableData, searchValue);
+
+  useEffect(() => {
+    console.log("comes inside the use");
+    let currentPage = findCurrentPage();
+
+    if (currentPage === "amount") {
+      setSelectedTabOnPageOpen(2);
+    } else if (currentPage === "users") {
+      setSelectedTabOnPageOpen(0);
+    } else if (currentPage === "bets") {
+      setSelectedTabOnPageOpen(1);
+    }
+    console.log(
+      "selectedTabOnPageOpenselectedTabOnPageOpen-->",
+      selectedTabOnPageOpen
+    );
+  }, []);
+  console.log(
+    "tableDatatableData->",
+    tableData,
+    searchValue,
+    currentTab,
+    selectedTabOnPageOpen
+  );
   return (
     <div className="containers">
       <div className="section"></div>
@@ -153,7 +179,6 @@ const Venues = () => {
         <div className="date">
           <div className="date2">
             <div className="date3">
-              
               <InputField
                 sx={{ ml: 1, flex: 1 }}
                 placeholder="Search for Venues"
@@ -168,10 +193,14 @@ const Venues = () => {
               <SearchIcon sx={{ backgroundColor: "white", color: "grey" }} />
             </div>
             <br />
-            <div className="dropdown">
-              <Search />
-            </div>
-            <Tab SelectedMatric={SelectedMatric}/>
+            {selectedTabOnPageOpen ? (
+              <Tab
+                selectedTabOnPageOpen={selectedTabOnPageOpen}
+                SelectedMatric={SelectedMatric}
+              />
+            ) : (
+              ""
+            )}
           </div>
 
           <div className="date1">
@@ -180,7 +209,7 @@ const Venues = () => {
             <div
               className="datech"
               style={
-                findCurrentPage() === "users"
+                currentTab === "users"
                   ? { pointerEvents: "none", opacity: 0.4 }
                   : {}
               }
@@ -192,17 +221,17 @@ const Venues = () => {
       </div>
 
       <div className="userpage1">
-        {currentPage === "/users" ? (
+        {currentTab === "users" ? (
           <Table type={"active_users"} data={tableData?.data?.data} />
         ) : (
           ""
         )}
-        {currentPage === "/bets" ? (
+        {currentTab === "bets" ? (
           <Table type={"frequency_of_bets"} data={tableData?.data?.data} />
         ) : (
           ""
         )}
-        {currentPage === "/amount" ? (
+        {currentTab === "amount" ? (
           <Table
             type={"frequency_of_total_amount_spent"}
             data={tableData?.data?.data}
