@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { DateRangePicker } from "react-date-range";
-import "./Date.css";
+import "./Date.scss";
 import format from "date-fns/format";
 import { addDays } from "date-fns";
 
@@ -71,8 +71,6 @@ const DateRangePickerComp = ({ getDateRange, type }) => {
           />
         </label>
       </div>
-      <br />
-
       <div ref={refOne}>
         {open && (
           <DateRangePicker

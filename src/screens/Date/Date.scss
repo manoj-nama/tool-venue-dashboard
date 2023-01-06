@@ -1,0 +1,13 @@
+.calendarElement {
+	color: black;
+	position: absolute;
+	border: thin solid rgb(224, 220, 220);
+	border-radius: 5px;
+	z-index: 10001;
+	right: 10px;
+	box-shadow: 0 5px 50px rgba(0, 0, 0, 0.2);
+}
+
+.wrapp {
+	display: flex;
+}

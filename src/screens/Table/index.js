@@ -7,32 +7,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
-
-const columns = [
-  { id: "name", label: "Name", minWidth: 170 },
-  { id: "code", label: "ISO\u00a0Code", minWidth: 100 },
-  {
-    id: "population",
-    label: "Population",
-    minWidth: 170,
-    align: "right",
-    format: (value) => value.toLocaleString("en-US"),
-  },
-  {
-    id: "size",
-    label: "Size\u00a0(km\u00b2)",
-    minWidth: 170,
-    align: "right",
-    format: (value) => value.toLocaleString("en-US"),
-  },
-  {
-    id: "density",
-    label: "Density",
-    minWidth: 170,
-    align: "right",
-    format: (value) => value.toFixed(2),
-  },
-];
+import "./Table.scss";
 
 function createData(name, code, population, size) {
   const density = population / size;
@@ -57,7 +32,7 @@ const rows = [
   createData("Brazil", "BR", 210147125, 8515767),
 ];
 
-export default function StickyHeadTable({ data, type }) {
+export default function StickyHeadTable({ data, type, label }) {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
@@ -71,41 +46,20 @@ export default function StickyHeadTable({ data, type }) {
   };
 
   return (
-    <Paper sx={{ width: "100%", overflow: "hidden" }}>
-      <TableContainer sx={{ maxHeight: 440 }}>
+    <Paper sx={{
+      width: "100%",
+      overflow: "hidden",
+      borderRadius: 0,
+    }}>
+      <TableContainer sx={{ maxHeight: 'calc(100vh - 220px)' }}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
-              <TableCell
-                align={"center"}
-                // style={{ minWidth: column.minWidth }}
-              >
-                {"venueId"}
-              </TableCell>
-              <TableCell
-                align={"center"}
-                // style={{ minWidth: column.minWidth }}
-              >
-                {"venueName"}
-              </TableCell>
-              <TableCell
-                align={"center"}
-                // style={{ minWidth: column.minWidth }}
-              >
-                {"venueState"}
-              </TableCell>
-              <TableCell
-                align={"center"}
-                // style={{ minWidth: column.minWidth }}
-              >
-                {"venueType"}
-              </TableCell>
-              <TableCell
-                align={"center"}
-                // style={{ minWidth: column.minWidth }}
-              >
-                {type}
-              </TableCell>
+              <TableCell className="tbl-cell hdr-cell" align={"center"}>{"ID"}</TableCell>
+              <TableCell className="tbl-cell hdr-cell">{"Name"}</TableCell>
+              <TableCell className="tbl-cell hdr-cell" align={"center"}>{"State"}</TableCell>
+              <TableCell className="tbl-cell hdr-cell" align={"center"}>{"Type"}</TableCell>
+              <TableCell className="tbl-cell hdr-cell" align={"center"}>{label}</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -113,12 +67,12 @@ export default function StickyHeadTable({ data, type }) {
               ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               ?.map((row) => {
                 return (
-                  <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
-                    <TableCell align={"center"}>{row?.venueId}</TableCell>
-                    <TableCell align={"center"}>{row?.venueName}</TableCell>
-                    <TableCell align={"center"}>{row?.venueState}</TableCell>
-                    <TableCell align={"center"}>{row?.venueType}</TableCell>
-                    <TableCell align={"center"}>{row?.[type]}</TableCell>
+                  <TableRow hover role="checkbox" tabIndex={-1} key={row.venueId}>
+                    <TableCell className="tbl-cell" align={"center"}>{row?.venueId}</TableCell>
+                    <TableCell className="tbl-cell">{row?.venueName}</TableCell>
+                    <TableCell className="tbl-cell" align={"center"}>{row?.venueState}</TableCell>
+                    <TableCell className="tbl-cell" align={"center"}>{row?.venueType}</TableCell>
+                    <TableCell className="tbl-cell" align={"center"}>{row?.[type]}</TableCell>
                   </TableRow>
                 );
               })}

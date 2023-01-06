@@ -101,7 +101,7 @@ const Home = () => {
           textColor={"#ed6c03"}
           display$={"none"}
           displayHr={"none"}
-          route={"/venues?type=users"}
+          route={"/venues?tab=users"}
           setMargin={1}
         />
         <Charts
@@ -113,7 +113,7 @@ const Home = () => {
           textColor={"#1876d2"}
           display$={"none"}
           displayHr={"contents"}
-          route={"/venues?type=bets"}
+          route={"/venues?tab=bets"}
           setMargin={0}
         />
         <Charts
@@ -125,7 +125,7 @@ const Home = () => {
           textColor={"#2f7c32"}
           display$={"contents"}
           displayHr={"contents"}
-          route={"/venues?type=amount"}
+          route={"/venues?tab=amount"}
           setMargin={0}
         />
       </div>
