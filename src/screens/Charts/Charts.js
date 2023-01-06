@@ -7,6 +7,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import ProgressBar from "../Components/progressiveBar";
 import InfoIcon from "@mui/icons-material/Info";
 import Tooltip from "@mui/material/Tooltip";
+import {  useNavigate } from "react-router-dom";
 
 const theme2 = createTheme({
   components: {
@@ -32,6 +33,7 @@ function Charts({
   setMargin,
   maxValueKey
 }) {
+  const navigate = useNavigate();
   let max = parseInt(data?.[0]?.[maxValueKey]);
   return (
     <div className="chart-container">
@@ -78,8 +80,9 @@ function Charts({
                 variant="h10"
                 className="metric-value-secondary"
                 color={textColor}
+                onClick={()=>{navigate(`/venue-details/${item.venueId}`)}}   
               >
-                {item?.venueName}
+               {item?.venueName}
               </Typography>
               <ProgressBar
                 label="Full progressbar"

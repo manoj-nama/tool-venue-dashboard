@@ -82,3 +82,34 @@
     display:flex;
     gap:130px;
 }
+.icons{
+    display:flex;
+    justify-content: right;
+    margin-right:5px;
+    gap:10px;
+}
+.ico{
+    font-size: 25px;
+   
+}
+.btns{
+    background-color: #008542;
+    border:none;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+
+    margin:5px;
+    border-radius:7px;
+    color: white;
+    padding:7px 10px;
+
+}
+.btns2{
+    display:flex!important;
+
+    align-items: center;
+    justify-content: center;
+}
+.text{
+    padding-left:10px;
+    font-size: 20px;
+}

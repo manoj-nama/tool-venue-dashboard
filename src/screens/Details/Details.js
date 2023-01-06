@@ -5,6 +5,9 @@ import { useParams } from "react-router-dom";
 import "./Details.css";
 import Maps from "../Maps/Maps";
 import Table from "../Table/Table";
+import {TbDiscount2} from "react-icons/tb";
+import {TfiAnnouncement} from "react-icons/tfi";
+
 
 function Details() {
   const [venueData, setVenueData] = React.useState([]);
@@ -39,6 +42,7 @@ function Details() {
       <div className="lowerview">
         <div className="table">
           <Table />
+        
 
         </div>
 
@@ -64,6 +68,23 @@ function Details() {
           ) : (
             ""
           )}
+        </div>
+        <div className="icons">
+          <button className="btns">
+          <div className="btns2">
+          <div className="ico"><TbDiscount2/></div>
+          <div className="text">Reveal a New Offer</div>
+          </div>
+
+          </button>
+          <button className="btns">
+            <div className="btns2">
+            <span className="ico"><TfiAnnouncement/></span>
+            
+            <span className="text">Make an Announcement</span>
+            </div>
+          </button>
+          
         </div>
       </div>
       
