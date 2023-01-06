@@ -7,7 +7,7 @@ import Maps from "../Maps/Maps";
 import Table from "../Table/Table";
 import {TbDiscount2} from "react-icons/tb";
 import {TfiAnnouncement} from "react-icons/tfi";
-import { SolarPower } from "@mui/icons-material";
+
 
 
 function Details() {
@@ -21,7 +21,7 @@ function Details() {
         `http://13.211.126.67:3000/v1/service-venue/venue-info/${id}`
       );
       if(res.data.data.length===0){
-        nav("/err");
+        nav("/error");
       }else{
         setVenueData(res.data);
       }  
