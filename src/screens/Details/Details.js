@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import img from "../Home/logo.svg";
 import { httpAuth } from "../../utils/http-utility";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import "./Details.css";
 import Maps from "../Maps/Maps";
 import Table from "../Table/Table";
@@ -9,20 +9,25 @@ import {TbDiscount2} from "react-icons/tb";
 import {TfiAnnouncement} from "react-icons/tfi";
 
 
+
 function Details() {
   const [venueData, setVenueData] = React.useState([]);
   const{id}=useParams();
+  const nav=useNavigate();
 
   useEffect(() => {
     const fetchdata = async () => {
       const res = await httpAuth.get(
         `http://13.211.126.67:3000/v1/service-venue/venue-info/${id}`
       );
-
-      setVenueData(res.data);
+      if(res.data.data.length===0){
+        nav("/error");
+      }else{
+        setVenueData(res.data);
+      }  
     };
     fetchdata();
-  }, []);
+  },[]);
 
   return (
     <div className="containers">

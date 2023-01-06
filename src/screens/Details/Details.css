@@ -103,6 +103,10 @@
     padding:7px 10px;
 
 }
+.btns:hover{
+    background-color: rgb(200, 194, 194);
+    color:black;
+  }
 .btns2{
     display:flex!important;
 
