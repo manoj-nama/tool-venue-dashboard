@@ -1,26 +1,38 @@
-import * as React from 'react';
-import SearchIcon from '@mui/icons-material/Search';
-import InputBase from '@mui/material/InputBase';
-import "./Search.css"
+import React from "react";
+import Select from "react-select";
 
-function App() {
-  return (
-    
-        <div className="search">
+class SelectComponent extends React.Component {
+  componentDidMount() {}
+  render() {
 
-            <div className='searchlist'>
-            <InputBase
-              placeholder="Search for Venue"
-              inputProps={{ 'aria-label': 'search' }}
-            />
-            </div>
-            <div className="searchIcon">
-              <SearchIcon />
-            </div>
-          </div>
+    const options = [
+        { label: "Ascending", value: 1 },
+        { label: "Desending", value: 2 }
+    ];
+
+    const theme = theme => ({
+      ...theme,
+      colors: {
         
-  
-  
-  );
+        ...theme.colors,
+        text:"black",
+        primary25: "#f3f3f3",
+        primary: "blue"
+
+      }
+    });
+
+    return (
+      <Select
+        className="select"
+        defaultValue={options[1]}
+        options={options}
+        placeholder="Sort By"
+        theme={theme}
+      />
+    );
+  }
 }
-export default App;
+
+export default SelectComponent;
+

@@ -14,5 +14,42 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: white;
+    background-color: rgb(18, 70, 15);
+
+    color:rgb(54, 53, 63)
+}
+.row{
+   
+    margin-left: 36px;
+    width:200px;
+    color:gray;
+}
+.span{
+    color:gray;
+    padding-left: 10px;
+}
+.spans{
+    color:black;
+    font-size: 20px;
+    padding-right: 10px;
+}
+.btn{
+    float:right;
+}
+h3{
+    
+    height:40px;
+    width:200px;
+    font-weight:normal;
+    color:gray;
+    display: flex; /* or inline-flex */
+    align-items: center; 
+    justify-content: center;
+    border-radius: 6px;
+    
+    margin-left: 150px;
+}
+.datech{
+    background-color: rgb(18, 70, 15);
+
 }
