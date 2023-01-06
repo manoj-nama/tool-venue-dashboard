@@ -7,6 +7,7 @@ import Details from "./screens/Details/Details";
 import Login from "./screens/Login";
 import "./index.scss";
 import ErrorBoundary from "./utils/errorBoundary";
+import Error from "./screens/ErrorPage/Error"
 import ProtectedRoute from "./utils/ProtectedRoute";
 
 const AppWrapper = () => (
@@ -45,6 +46,8 @@ const AppWrapper = () => (
       />
 
       <Route exact path="/venue-details/:id" element={<Details />} />
+
+      <Route exact path="*" element={<Error />} />
     </Routes>
   </BrowserRouter>
 );
