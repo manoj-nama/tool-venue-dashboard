@@ -25,9 +25,9 @@
     width: 180px;
     height: 40%;
     color: rgb(9, 9, 9);
-    background-color: rgb(244, 244, 244);
-    border: 1px solid rgb(224, 220, 220);
-    border-radius: 10px;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        border-radius: 10px;
 
 }
 .h2{
@@ -35,7 +35,11 @@
     font-size:25px;
 }
 .h2tag {
-    background-color: rgb(244, 244, 244) !important;
+    padding-left:11px;
+}
+.spanname{
+    font-weight:normal;
+    font-size: 21px;
 }
 
 .test {
@@ -76,4 +80,5 @@
 }
 .active{
     display:flex;
+    gap:130px;
 }

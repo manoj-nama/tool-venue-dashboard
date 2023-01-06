@@ -30,7 +30,7 @@ const AppWrapper = () => (
         }
       />
 
-      <Route exact path="/details" element={<Details />} />
+      <Route exact path="/venue-details/:id" element={<Details />} />
     </Routes>
   </BrowserRouter>
 );
