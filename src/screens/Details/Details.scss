@@ -7,6 +7,7 @@
 		.venue {
 			font-family: 'Open Sans', sans-serif;
 			padding: 10px;
+			margin-top: 30px;
 			position: relative;
 
 			.venue-name {
@@ -32,6 +33,10 @@
 					font-family: monospace;
 					font-weight: bold;
 					margin-right: 10px;
+					background-color: #008542;
+					padding: 0 10px;
+					border-radius: 16px;
+					color: #fff;
 				}
 			}
 
@@ -42,8 +47,7 @@
 				display: inline;
 				padding: 3px 10px;
 				border-radius: 10px;
-				background-color: #008542;
-				color: #fff;
+				background-color: #ddd;
 			}
 		}
 
@@ -58,7 +62,7 @@
 
 		.actions {
 			display: flex;
-			bottom: 10px;
+			margin-top: 70px;
 
 			.cta-btn {
 				cursor: pointer;
