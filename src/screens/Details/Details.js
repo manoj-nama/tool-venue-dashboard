@@ -1,11 +1,10 @@
 import React, { useEffect } from "react";
 import { httpAuth } from "../../utils/http-utility";
 import { useNavigate, useParams } from "react-router-dom";
-import "./Details.css";
+import "./Details.scss";
 import Maps from "../Maps/Maps";
 import Table from "../Table/Table";
-import { TbDiscount2 } from "react-icons/tb";
-import { TfiAnnouncement } from "react-icons/tfi";
+import { TfiAnnouncement, TfiTicket } from "react-icons/tfi";
 
 function Details() {
   const [venueData, setVenueData] = React.useState([]);
@@ -27,57 +26,46 @@ function Details() {
   }, []);
 
   return (
-    <div className="containers">
-      <div className="test">
-        <h2 className="h2">Venues Insights</h2>
-      </div>
-      <div className="lowerview">
+    <div className="container venue-container">
+      <div className="section">
+        <div className="venue-details">
+          <div className="map">
+            {venueData?.venueDetails ? (
+              <Maps mapData={venueData?.venueDetails} />
+            ) : (
+              ""
+            )}
+          </div>
+          <div className="venue">
+            <div className="venue-type">{venueData?.venueDetails?.venueType}</div>
+            <div className="venue-name">
+              {venueData?.venueDetails?.venueName}
+              <span className="venue-state">({venueData?.venueDetails?.venueState})</span>
+            </div>
+            <div className="venue-users">
+              <span>{venueData?.data?.[0]?.active_users}</span>
+              {"Active Users"}
+            </div>
+            <div className="actions">
+              <button className="cta-btn">
+                <div className="btns2">
+                  <span className="ico"><TfiAnnouncement /></span>
+                  <span className="text">Make an Announcement</span>
+                </div>
+              </button>
+              <button className="cta-btn">
+                <div className="btns2">
+                  <span className="ico"><TfiTicket /></span>
+                  <span className="text">Send a Survey</span>
+                </div>
+              </button>
+            </div>
+          </div>
+        </div>
         <div className="table">
           <Table />
         </div>
-
-        <div className="map">
-          <div className="active">
-            <div className="info">
-              <h2 className="h2tag">
-                Venue:<span className="spanname">{venueData?.venueDetails?.venueName}</span> State:
-                <span className="spanname">{venueData?.venueDetails?.venueState}</span>
-              </h2>
-            </div>
-
-            <div className="info">
-              <h2 className="h2tag">
-                Active Users: <span className="spanname">{venueData?.data?.[0]?.active_users}</span>
-              </h2>
-            </div>
-          </div>
-          {venueData?.venueDetails ? (
-            <div className="map">
-              <Maps mapData={venueData?.venueDetails} />
-            </div>
-          ) : (
-            ""
-          )}
-        </div>
-        <div className="icons">
-          <button className="btns">
-            <div className="btns2">
-              <div className="ico"><TbDiscount2 /></div>
-              <div className="text">Reveal a New Offer</div>
-            </div>
-
-          </button>
-          <button className="btns">
-            <div className="btns2">
-              <span className="ico"><TfiAnnouncement /></span>
-
-              <span className="text">Make an Announcement</span>
-            </div>
-          </button>
-
-        </div>
       </div>
-
     </div>
   );
 }

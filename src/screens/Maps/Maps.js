@@ -1,12 +1,12 @@
 import React from "react";
-import "../Maps/Maps.css";
+import "./Maps.css";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 
 function Maps({ mapData }) {
   return (
     <MapContainer
       center={[mapData?.latitude, mapData?.longitude]}
-      zoom={13}
+      zoom={15}
       scrollWheelZoom={true}
     >
       <TileLayer
@@ -15,12 +15,9 @@ function Maps({ mapData }) {
       />
       <Marker position={[mapData?.latitude, mapData?.longitude]}>
         <Popup>
-          <h4 className="h4">
-            <b>{mapData?.venueName}</b>
-          </h4>
-          <h4>Venue State : {mapData?.venueState}</h4>
-          <h4>Venue Type : {mapData?.venueType}</h4>
-          
+          <strong>{mapData?.venueName}</strong>
+          <br /><span>{mapData?.venueState}</span>
+          <br /><span>{mapData?.venueType}</span>
         </Popup>
       </Marker>
     </MapContainer>

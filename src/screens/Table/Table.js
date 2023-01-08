@@ -11,48 +11,32 @@ const columns = [
   {
     field: "account_number",
     headerName: "Account Number",
-    width: 200,
-    minWidth: 180,
-    maxWidth: 300,
+    flex: 1,
     headerClassName: "super-app-theme--header",
   },
   {
     field: "bet_amount",
     headerName: "Bet Amount",
-    width: 220,
-    minWidth: 180,
-    maxWidth: 300,
+    flex: 1,
     headerClassName: "super-app-theme--header",
   },
   {
     field: "sport_name",
     headerName: "Sports Name",
-    width: 200,
-    minWidth: 130,
-    maxWidth: 250,
-    headerClassName: "super-app-theme--header",
-  },
-  {
-    field: "tournament_name",
-    headerName: "Tournament Name",
-    width: 170,
-    minWidth: 150,
-    maxWidth: 220,
+    flex: 1,
     headerClassName: "super-app-theme--header",
   },
   {
     field: "bet_type",
     headerName: "Bet Type",
-    width: 150,
-    minWidth: 150,
-    maxWidth: 220,
+    flex: 1,
     headerClassName: "super-app-theme--header",
   },
   {
     field: "bet_date_and_time",
     headerName: "Bet Date & Time",
     headerClassName: "super-app-theme--header",
-    width: 220,
+    flex: 1,
   },
 ];
 
@@ -77,12 +61,11 @@ export default function DataTable() {
       bet_date_and_time: moment(row?.bet_date_and_time).format("lll"),
       bet_type: row?.bet_type,
       sport_name: row?.sport_name,
-      tournament_name: row?.tournament_name,
     };
   });
 
   return (
-    <div style={{ height: "630px", width: "100%" }}>
+    <div style={{ height: "630px" }}>
       <DataGrid
         getRowId={(row) => row.betId}
         rows={tableData}
