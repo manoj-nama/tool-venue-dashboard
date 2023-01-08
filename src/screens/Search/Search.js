@@ -2,20 +2,20 @@ import React from "react";
 import Select from "react-select";
 
 class SelectComponent extends React.Component {
-  componentDidMount() {}
+  componentDidMount() { }
   render() {
 
     const options = [
-        { label: "Ascending", value: 1 },
-        { label: "Desending", value: 2 }
+      { label: "Ascending", value: 1 },
+      { label: "Desending", value: 2 }
     ];
 
     const theme = theme => ({
       ...theme,
       colors: {
-        
+
         ...theme.colors,
-        text:"black",
+        text: "black",
         primary25: "#f3f3f3",
         primary: "blue"
 
@@ -35,4 +35,21 @@ class SelectComponent extends React.Component {
 }
 
 export default SelectComponent;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

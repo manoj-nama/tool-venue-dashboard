@@ -1,0 +1,67 @@
+.imagebg {
+	background-color: rgb(18, 70, 15);
+}
+
+.date {
+	background-color: rgb(18, 70, 15);
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	gap: 100px;
+}
+
+.userpage1 {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: rgb(18, 70, 15);
+
+	color: rgb(54, 53, 63)
+}
+
+.row {
+	margin-left: 36px;
+	width: 200px;
+	color: gray;
+}
+
+.span {
+	color: gray;
+	padding-left: 10px;
+}
+
+.spans {
+	color: black;
+	font-size: 20px;
+	padding-right: 10px;
+}
+
+.btn {
+	float: right;
+}
+
+.filters-container {
+	flex-direction: column;
+	justify-content: space-between;
+
+	.search-box {
+		display: flex;
+		align-items: center;
+		border-bottom: 1px solid #eee;
+	}
+
+	.filters {
+		display: flex;
+
+		.date-picker {
+			display: flex;
+			align-items: center;
+			width: 400px;
+
+			>label {
+				margin-right: 10px;
+			}
+		}
+	}
+
+}

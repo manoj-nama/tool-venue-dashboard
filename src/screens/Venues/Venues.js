@@ -1,72 +1,231 @@
-import React from 'react'
-//import { Typography } from "@mui/material";
-import "./Venues.css";
-import img from "./logo.png";
-//import Charts from "../Charts/Charts.js";
-import Search from "../Search/Search"
-
+import React, { useEffect, useState } from "react";
+import "./Venues.scss";
+import Table from "../Table";
+import Tab from "../Tab";
 import Date from "../Date/Date.js";
-import SearchIcon from "@mui/icons-material/Search";
 
-//import IconButton from '@mui/material/IconButton';
+import SearchIcon from "@mui/icons-material/Search";
 import InputField from "@mui/material/InputBase";
+import { useNavigate } from "react-router-dom";
+import {
+  getVenuesByAmount,
+  getVenuesByBets,
+  getVenuesByActiveUser,
+} from "../../services";
+
+const TABS = [
+  "users",
+  "bets",
+  "amount"
+];
+const TabFilters = {
+  users: 0,
+  bets: 1,
+  amount: 2,
+};
+const TableTypes = {
+  users: {
+    key: 'active_users',
+    label: 'Active Users',
+  },
+  bets: {
+    key: 'frequency_of_bets',
+    label: 'Bets Placed',
+  },
+  amount: {
+    key: 'frequency_of_total_amount_spent',
+    label: 'Amount Spent',
+  },
+}
+
+const debounce = function (fn, d) {
+  let timer;
+  return function () {
+    let context = this;
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      fn.apply(context, arguments);
+    }, d);
+  };
+};
+
+const makeVenuesRequest = async (type = "users", { searchText, startDate, endDate }) => {
+  const requests = {
+    users: getVenuesByActiveUser,
+    bets: getVenuesByBets,
+    amount: getVenuesByAmount
+  };
+  const filtersToApply = {};
+  if (searchText) {
+    filtersToApply["text"] = searchText;
+  }
+  if (startDate) {
+    filtersToApply["fromDateUTC"] = startDate;
+  }
+  if (endDate) {
+    filtersToApply["toDateUTC"] = endDate;
+  }
+
+  const sp = new URLSearchParams(filtersToApply).toString();
+  const path = `search${sp ? `?${sp}` : ''}`;
+  const fn = requests[type];
+  return fn(path);
+};
 
 const Venues = () => {
-  
-  
+  const navigate = useNavigate();
+  const getSearchParams = () => new URLSearchParams(window.location.search);
+  const [tableData, setTableData] = useState({
+    data: [],
+    total_count: 0,
+  });
+
+  const navigateToVenueDetails = (venue) => {
+    navigate(`/venue-details/${venue.venueId}`);
+  }
+
+  const [filter, setFilter] = useState({
+    startDate: getSearchParams().get("startDate") || "",
+    endDate: getSearchParams().get("endDate") || "",
+    searchText: getSearchParams().get('searchText') || "",
+    tab: TABS[0],
+  });
+
+  const getCurrentTab = () => {
+    const loc = getSearchParams();
+    return loc.get('tab') || 'users';
+  };
+
+  const getVenueData = async () => {
+    let res = await makeVenuesRequest(filter.tab, filter);
+    if (res) {
+      const { total_count, data, active_users } = res.data;
+      setTableData({
+        total_count,
+        data: active_users || data,
+      });
+    }
+  };
+
+  const getActiveFilters = () => {
+    const { searchText, startDate, endDate } = filter;
+    const filtersToApply = {};
+    if (searchText) {
+      filtersToApply["searchText"] = searchText;
+    }
+    if (startDate) {
+      filtersToApply["startDate"] = startDate;
+    }
+    if (endDate) {
+      filtersToApply["endDate"] = endDate;
+    }
+    return filtersToApply;
+  }
+
+  const updateSearchParams = (override = {}) => {
+    const sp = new URLSearchParams({
+      ...getActiveFilters(),
+      ...override,
+    }).toString();
+
+    navigate(`/venues${sp ? `?${sp}` : ''}`);
+  };
+
+  const onSearchChange = (searchText) => {
+    setFilter(filters => ({
+      ...filters,
+      searchText,
+    }));
+    updateSearchParams({ searchText });
+  };
+
+  const onTabSelect = (value) => {
+    let tab = TABS[value] || TABS[0];
+    updateSearchParams({ tab });
+    setFilter(filters => ({
+      ...filters,
+      tab,
+    }));
+  };
+
+  const onDateSelectionChange = (data, type) => {
+    if (type === "dateRange") {
+      const startDate = +data?.[0]?.startDate;
+      const endDate = +data?.[0]?.endDate;
+      updateSearchParams({ startDate, endDate });
+      setFilter(filters => ({
+        ...filters,
+        startDate,
+        endDate
+      }));
+    }
+  };
+
+  const getVenues = debounce(getVenueData, 500);
+
+  useEffect(() => {
+    getVenues();
+  }, [filter]);
+
+  useEffect(() => {
+    let currentTab = getCurrentTab();
+    setFilter(filters => ({
+      ...filters,
+      tab: currentTab,
+    }));
+  }, []);
+
+  const currentTab = filter.tab;
+  const tableType = TableTypes[currentTab] || TableTypes.users;
+
   return (
     <div className="container">
-      <div className="test">
-        <div className="imagebg">
-          <img src={img} className="image" alt="logo"></img>
+      <div className="filters-container section">
+        <div className="search-box">
+          <SearchIcon
+            sx={{ backgroundColor: "white", color: "grey" }}
+          />
+          <InputField
+            sx={{ ml: 1, flex: 1, backgroundColor: "white" }}
+            placeholder="Search for Venues"
+            inputProps={{ "aria-label": "search venues" }}
+            value={filter.searchText}
+            onChange={(e) => {
+              onSearchChange(e.target.value);
+            }}
+          />
         </div>
-        <h2>Venues with Most Users</h2>
-        
-
-        <div className="date">
-          <div className="date2">
-            <div className="date3">
-            <InputField
-              sx={{ ml: 1, flex: 1 }}
-              placeholder="Search for Venues"
-              inputProps={{ "aria-label": "search venues" }}
-            />
-
-            <SearchIcon sx={{ backgroundColor: "white", color: "grey" }} />
+        <div className="filters">
+          <Tab
+            selectedTabOnPageOpen={TabFilters[filter.tab]}
+            onTabSelect={onTabSelect}
+          />
+          <div className="date-picker">
+            <label>Date Range: </label>
+            <div
+              style={
+                currentTab === "users"
+                  ? { pointerEvents: "none", opacity: 0.4 }
+                  : {}
+              }
+            >
+              <Date onChange={onDateSelectionChange} />
             </div>
-            <br/>
-            <div className='dropdown' >
-            
-            <Search />
-            </div>
-           
-            
-            
-          </div>
-
-          <div className="date1">
-            
-            <h3>Select date Range</h3>
-           
-            <div className="datech">
-              <Date  />
-            </div>
-            
           </div>
         </div>
-
       </div>
 
-      <div className="userpage1">
-        
+      <div className="table-section section">
+        <Table
+          type={tableType.key}
+          label={tableType.label}
+          totalRecords={tableData?.total_count}
+          data={tableData?.data}
+          onRecordClick={navigateToVenueDetails}
+        />
       </div>
     </div>
   );
 };
 
-            
-
 export default Venues;
-
-
-

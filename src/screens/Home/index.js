@@ -1,6 +1,5 @@
 import * as React from "react";
 import "./Home.scss";
-import img from "./logo.svg";
 import Charts from "../Charts/Charts.js";
 import { useEffect } from "react";
 import {
@@ -11,7 +10,7 @@ import {
 } from "../../services";
 
 export const toCountString = (count) => {
-  const outCount = (typeof count === "string" ? parseInt(count, 10) : count);
+  const outCount = typeof count === "string" ? parseInt(count, 10) : count;
   if (!outCount) {
     return "0";
   } else if (outCount <= 1000) {
@@ -70,13 +69,6 @@ const Home = () => {
 
   return (
     <div className="container">
-      <div className="section">
-      </div>
-      <div className="header">
-        <div className="logo">
-          <img src={img} className="image" alt="logo here"></img>
-        </div>
-      </div>
       <div className="section landing">
         <div className="metric totalUsers">
           <p className="value userCount">{activeCount?.userCount}</p>
@@ -102,6 +94,7 @@ const Home = () => {
           textColor={"#ed6c03"}
           display$={"none"}
           displayHr={"none"}
+          route={"/venues?tab=users"}
           setMargin={1}
         />
         <Charts
@@ -113,6 +106,7 @@ const Home = () => {
           textColor={"#1876d2"}
           display$={"none"}
           displayHr={"contents"}
+          route={"/venues?tab=bets"}
           setMargin={0}
         />
         <Charts
@@ -124,6 +118,7 @@ const Home = () => {
           textColor={"#2f7c32"}
           display$={"contents"}
           displayHr={"contents"}
+          route={"/venues?tab=amount"}
           setMargin={0}
         />
       </div>

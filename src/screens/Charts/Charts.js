@@ -31,7 +31,8 @@ function Charts({
   display$,
   displayHr,
   setMargin,
-  maxValueKey
+  route,
+  maxValueKey,
 }) {
   const navigate = useNavigate();
   let max = parseInt(data?.[0]?.[maxValueKey]);
@@ -70,10 +71,12 @@ function Charts({
                 style={{ marginBottom: setMargin }}
               >
                 <span className="prefix" style={{ display: display$ }}>$</span>
-                {display$ !== "none" && displayHr !== "none"
-                  ? parseFloat(item?.[maxValueKey]).toFixed(2)
-                  : item?.[maxValueKey]}
-              </Typography>
+                {
+                  display$ !== "none" && displayHr !== "none"
+                    ? parseFloat(item?.[maxValueKey]).toFixed(2)
+                    : item?.[maxValueKey]
+                }
+              </Typography >
               <Typography
                 display="block"
                 align="left"
@@ -96,13 +99,14 @@ function Charts({
                   },
                 ]}
               />
-            </Box>
-          ))}
-        </Box>
-      </div>
+            </Box >
+          ))
+          }
+        </Box >
+      </div >
 
       <Link
-        href="/venue"
+        href={route}
         sx={{
           bgcolor: "green",
           color: "white",
@@ -113,7 +117,7 @@ function Charts({
       >
         Show More{" "}
       </Link>
-    </div>
+    </div >
   );
 }
 

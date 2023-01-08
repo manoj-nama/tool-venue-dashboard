@@ -1,0 +1,24 @@
+.calendarElement {
+	color: black;
+	position: absolute;
+	border: thin solid rgb(224, 220, 220);
+	border-radius: 5px;
+	z-index: 10001;
+	right: 7px;
+	top: 100px;
+	box-shadow: 0 5px 50px rgba(0, 0, 0, 0.2);
+}
+
+.range_display {
+	cursor: pointer;
+	font-weight: bold;
+	font-size: 14px;
+	border-radius: 5px;
+	padding: 10px;
+	border: 1px solid #eee;
+
+	&:hover {
+		background-color: #eee;
+		border: 1px solid #ddd;
+	}
+}

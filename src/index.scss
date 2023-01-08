@@ -26,6 +26,7 @@ $blue : blue;
     max-width: 1400px;
     width: 100%;
     align-items: stretch;
+    position: relative;
   }
 }
 
@@ -45,6 +46,7 @@ $blue : blue;
     justify-content: center;
 
     img {
+      cursor: pointer;
       width: 80px;
     }
   }
