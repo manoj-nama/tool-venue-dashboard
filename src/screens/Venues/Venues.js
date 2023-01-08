@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "./Venues.scss";
-import img from "../../assets/logo.svg";
 import Table from "../Table";
 import Tab from "../Tab";
 import Date from "../Date/Date.js";
@@ -179,11 +178,6 @@ const Venues = () => {
 
   return (
     <div className="container">
-      <div className="header">
-        <div className="logo">
-          <img src={img} className="image" alt="logo here"></img>
-        </div>
-      </div>
       <div className="filters-container section">
         <div className="search-box">
           <SearchIcon
@@ -217,7 +211,6 @@ const Venues = () => {
             </div>
           </div>
         </div>
-
       </div>
 
       <div className="table-section section">

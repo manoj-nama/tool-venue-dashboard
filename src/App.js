@@ -2,6 +2,7 @@ import * as React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import history from "./utils/history";
 import Home from "./screens/Home";
+import Header from "./screens/Components/Header";
 import Venues from "./screens/Venues/Venues";
 import Details from "./screens/Details/Details";
 import Login from "./screens/Login";
@@ -18,6 +19,7 @@ const AppWrapper = () => (
         path="/"
         element={
           <ErrorBoundary>
+            <Header />
             <Login />
           </ErrorBoundary>
         }
@@ -28,6 +30,7 @@ const AppWrapper = () => (
         element={
           <ErrorBoundary>
             <ProtectedRoute>
+              <Header />
               <Home />
             </ProtectedRoute>
           </ErrorBoundary>
@@ -38,12 +41,22 @@ const AppWrapper = () => (
         path="/venues"
         element={
           <ErrorBoundary>
-            <Venues />
+            <ProtectedRoute>
+              <Header />
+              <Venues />
+            </ProtectedRoute>
           </ErrorBoundary>
         }
       />
 
-      <Route exact path="/venue-details/:id" element={<Details />} />
+      <Route exact path="/venue-details/:id" element={
+        <ErrorBoundary>
+          <ProtectedRoute>
+            <Header />
+            <Details />
+          </ProtectedRoute>
+        </ErrorBoundary>
+      } />
 
       <Route exact path="*" element={<Error />} />
     </Routes>

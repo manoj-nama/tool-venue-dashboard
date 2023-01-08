@@ -1,6 +1,5 @@
 import * as React from "react";
 import "./Home.scss";
-import img from "../../assets/logo.svg";
 import Charts from "../Charts/Charts.js";
 import { useEffect } from "react";
 import {
@@ -70,11 +69,6 @@ const Home = () => {
 
   return (
     <div className="container">
-      <div className="header">
-        <div className="logo">
-          <img src={img} className="image" alt="logo here"></img>
-        </div>
-      </div>
       <div className="section landing">
         <div className="metric totalUsers">
           <p className="value userCount">{activeCount?.userCount}</p>

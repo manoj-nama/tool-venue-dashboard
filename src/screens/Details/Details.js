@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import img from "../../assets/logo.svg";
 import { httpAuth } from "../../utils/http-utility";
 import { useNavigate, useParams } from "react-router-dom";
 import "./Details.css";
@@ -30,23 +29,11 @@ function Details() {
   return (
     <div className="containers">
       <div className="test">
-        <div className="section"></div>
-        <div className="header">
-          <div className="logo">
-            <img src={img} className="image" alt="logo here"></img>
-          </div>
-        </div>
         <h2 className="h2">Venues Insights</h2>
-
-        {/* <div className="imagebg">
-          <img src={img} className="image" alt="logo"></img>
-        </div> */}
       </div>
       <div className="lowerview">
         <div className="table">
           <Table />
-
-
         </div>
 
         <div className="map">
