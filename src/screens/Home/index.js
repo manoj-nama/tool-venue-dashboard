@@ -70,7 +70,6 @@ const Home = () => {
 
   return (
     <div className="container">
-      <div className="section"></div>
       <div className="header">
         <div className="logo">
           <img src={img} className="image" alt="logo here"></img>

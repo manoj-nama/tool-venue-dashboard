@@ -1,0 +1,37 @@
+.super-app{
+    background-color: rgba(255, 255, 255);
+    height: 400;
+    width: 100%;
+  }
+  
+  .super-app-theme--header{
+    background-color: #008542;
+    font-size: 17px;
+    font-weight: 800;
+    color: rgba(255, 255, 255);
+  }
+  
+  .super-app-win{
+    background-color: rgb(130,202,157, 0.7);
+    text-transform: capitalize;
+  }
+  .super-app-lost{
+    background-color: rgb(243,190,193);
+    text-transform: capitalize;
+  }
+  .super-app-normal{
+    background-color: rgb(105,105,104,0.5);
+    text-transform: capitalize;
+  }
+  .super-app-pending{
+    background-color: rgb(244,231,51,0.3);
+    text-transform: capitalize;
+  }
+  .MuiDataGrid-columnSeparator {
+  
+    display: flex;
+    justify-content: flex-start;
+  }
+  .MuiDataGrid-root {
+    border: none;
+  }
