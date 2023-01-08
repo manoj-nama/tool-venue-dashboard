@@ -40,6 +40,28 @@
 	float: right;
 }
 
-.date-picker {
-	/* display: none; */
+.filters-container {
+	flex-direction: column;
+	justify-content: space-between;
+
+	.search-box {
+		display: flex;
+		align-items: center;
+		border-bottom: 1px solid #eee;
+	}
+
+	.filters {
+		display: flex;
+
+		.date-picker {
+			display: flex;
+			align-items: center;
+			width: 400px;
+
+			>label {
+				margin-right: 10px;
+			}
+		}
+	}
+
 }

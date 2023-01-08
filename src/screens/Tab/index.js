@@ -45,7 +45,7 @@ export default function BasicTabs({ onTabSelect, selectedTabOnPageOpen }) {
 
   return (
     <Box sx={{ width: "100%" }}>
-      <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+      <Box>
         <Tabs
           value={selectedTabOnPageOpen}
           onChange={handleChange}

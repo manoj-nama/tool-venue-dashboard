@@ -138,7 +138,7 @@ const Venues = () => {
     }));
   };
 
-  const getDateRange = (data, type) => {
+  const onDateSelectionChange = (data, type) => {
     if (type === "dateRange") {
       const startDate = +data?.[0]?.startDate;
       const endDate = +data?.[0]?.endDate;
@@ -176,39 +176,39 @@ const Venues = () => {
         </div>
       </div>
       <div className="filters-container section">
+        <div className="search-box">
+          <SearchIcon
+            sx={{ backgroundColor: "white", color: "grey" }}
+          />
+          <InputField
+            sx={{ ml: 1, flex: 1, backgroundColor: "white" }}
+            placeholder="Search for Venues"
+            inputProps={{ "aria-label": "search venues" }}
+            value={filter.searchText}
+            onChange={(e) => {
+              onSearchChange(e.target.value);
+            }}
+          />
+        </div>
         <div className="filters">
-          <div className="date3">
-            <InputField
-              sx={{ ml: 1, flex: 1, backgroundColor: "white" }}
-              placeholder="Search for Venues"
-              inputProps={{ "aria-label": "search venues" }}
-              value={filter.searchText}
-              onChange={(e) => {
-                onSearchChange(e.target.value);
-              }}
-            />
-
-            <SearchIcon
-              sx={{ backgroundColor: "white", color: "grey", marginTop: 2 }}
-            />
-          </div>
           <Tab
             selectedTabOnPageOpen={TabFilters[filter.tab]}
             onTabSelect={onTabSelect}
           />
-        </div>
-
-        <div className="date-picker">
-          <div
-            style={
-              currentTab === "users"
-                ? { pointerEvents: "none", opacity: 0.4 }
-                : {}
-            }
-          >
-            <Date getDateRange={getDateRange} />
+          <div className="date-picker">
+            <label>Date Range: </label>
+            <div
+              style={
+                currentTab === "users"
+                  ? { pointerEvents: "none", opacity: 0.4 }
+                  : {}
+              }
+            >
+              <Date onChange={onDateSelectionChange} />
+            </div>
           </div>
         </div>
+
       </div>
 
       <div className="table-section section">

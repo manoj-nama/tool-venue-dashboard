@@ -7,12 +7,11 @@ import { addDays } from "date-fns";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 
-const DateRangePickerComp = ({ getDateRange, type }) => {
-  // date state
+const DateRangePickerComp = ({ onChange }) => {
   const [range, setRange] = useState([
     {
-      startDate: new Date(),
-      endDate: addDays(new Date(), 7),
+      startDate: addDays(new Date(), -5),
+      endDate: new Date(),
       key: "selection",
     },
   ]);
@@ -31,7 +30,6 @@ const DateRangePickerComp = ({ getDateRange, type }) => {
 
   // hide dropdown on ESC press
   const hideOnEscape = (e) => {
-    // console.log(e.key)
     if (e.key === "Escape") {
       setOpen(false);
     }
@@ -39,8 +37,6 @@ const DateRangePickerComp = ({ getDateRange, type }) => {
 
   // Hide dropdown on outside click
   const hideOnClickOutside = (e) => {
-    // console.log(refOne.current)
-    // console.log(e.target)
     if (refOne.current && !refOne.current.contains(e.target)) {
       setOpen(false);
     }
@@ -48,35 +44,17 @@ const DateRangePickerComp = ({ getDateRange, type }) => {
 
   return (
     <div className="calendarWrap">
-      <div className="wrapp">
-        <label className="label1">
-          {" "}
-          Start Date
-          <input
-            value={`${format(range[0].startDate, "MM/dd/yyyy")} `}
-            readOnly
-            className="inputBox"
-            onClick={() => setOpen((open) => !open)}
-          />
-        </label>
-
-        <label className="label2">
-          {" "}
-          End Date
-          <input
-            value={` ${format(range[0].endDate, "MM/dd/yyyy")}`}
-            readOnly
-            className="inputBox"
-            onClick={() => setOpen((open) => !open)}
-          />
-        </label>
-      </div>
+      <label className="range_display" onClick={() => setOpen(true)}>
+        {format(range[0].startDate, "MM/dd/yyyy")}
+        {" - "}
+        {format(range[0].endDate, "MM/dd/yyyy")}
+      </label>
       <div ref={refOne}>
         {open && (
           <DateRangePicker
             onChange={(item) => {
               setRange([item.selection]);
-              getDateRange([item.selection], "dateRange");
+              onChange([item.selection], "dateRange");
             }}
             editableDateInputs={true}
             moveRangeOnFirstSelection={false}
