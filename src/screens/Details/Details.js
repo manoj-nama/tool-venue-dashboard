@@ -1,33 +1,31 @@
 import React, { useEffect } from "react";
-import img from "../Home/logo.svg";
+import img from "../../assets/logo.svg";
 import { httpAuth } from "../../utils/http-utility";
 import { useNavigate, useParams } from "react-router-dom";
 import "./Details.css";
 import Maps from "../Maps/Maps";
 import Table from "../Table/Table";
-import {TbDiscount2} from "react-icons/tb";
-import {TfiAnnouncement} from "react-icons/tfi";
-
-
+import { TbDiscount2 } from "react-icons/tb";
+import { TfiAnnouncement } from "react-icons/tfi";
 
 function Details() {
   const [venueData, setVenueData] = React.useState([]);
-  const{id}=useParams();
-  const nav=useNavigate();
+  const { id } = useParams();
+  const nav = useNavigate();
 
   useEffect(() => {
     const fetchdata = async () => {
       const res = await httpAuth.get(
         `http://13.211.126.67:3000/v1/service-venue/venue-info/${id}`
       );
-      if(res.data.data.length===0){
+      if (res.data.data.length === 0) {
         nav("/error");
-      }else{
+      } else {
         setVenueData(res.data);
-      }  
+      }
     };
     fetchdata();
-  },[]);
+  }, []);
 
   return (
     <div className="containers">
@@ -47,7 +45,7 @@ function Details() {
       <div className="lowerview">
         <div className="table">
           <Table />
-        
+
 
         </div>
 
@@ -76,23 +74,23 @@ function Details() {
         </div>
         <div className="icons">
           <button className="btns">
-          <div className="btns2">
-          <div className="ico"><TbDiscount2/></div>
-          <div className="text">Reveal a New Offer</div>
-          </div>
+            <div className="btns2">
+              <div className="ico"><TbDiscount2 /></div>
+              <div className="text">Reveal a New Offer</div>
+            </div>
 
           </button>
           <button className="btns">
             <div className="btns2">
-            <span className="ico"><TfiAnnouncement/></span>
-            
-            <span className="text">Make an Announcement</span>
+              <span className="ico"><TfiAnnouncement /></span>
+
+              <span className="text">Make an Announcement</span>
             </div>
           </button>
-          
+
         </div>
       </div>
-      
+
     </div>
   );
 }

@@ -1,9 +1,9 @@
 import * as React from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import moment from "moment";
-import "./Table.css";
+import "./Table.scss";
 import { useEffect, useState } from "react";
-import {  useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import { httpAuth } from "../../utils/http-utility";
 
@@ -58,7 +58,7 @@ const columns = [
 
 export default function DataTable() {
   const [betData, setBetData] = useState([]);
-  const{id}=useParams();
+  const { id } = useParams();
 
   useEffect(() => {
     const fetchdata = async () => {

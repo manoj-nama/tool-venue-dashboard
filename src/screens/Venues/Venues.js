@@ -76,7 +76,16 @@ const makeVenuesRequest = async (type = "users", { searchText, startDate, endDat
 const Venues = () => {
   const navigate = useNavigate();
   const getSearchParams = () => new URLSearchParams(window.location.search);
-  const [tableData, setTableData] = useState();
+  const [tableData, setTableData] = useState({
+    data: {
+      data: [],
+      total_count: 0,
+    },
+  });
+
+  const navigateToVenueDetails = (venue) => {
+    navigate(`/venue-details/${venue.venueId}`);
+  }
 
   const [filter, setFilter] = useState({
     startDate: getSearchParams().get("startDate") || "",
@@ -215,7 +224,9 @@ const Venues = () => {
         <Table
           type={tableType.key}
           label={tableType.label}
+          totalRecords={tableData?.data?.total_count}
           data={tableData?.data?.data}
+          onRecordClick={navigateToVenueDetails}
         />
       </div>
     </div>
