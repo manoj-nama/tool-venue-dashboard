@@ -1,88 +1,96 @@
-.container.venue-container .section {
-	flex-direction: column;
+.container.venue-container {
+	.section {
+		flex-direction: column;
 
-	.venue-details {
-		display: flex;
-
-		.venue {
-			font-family: 'Open Sans', sans-serif;
-			padding: 10px;
-			margin-top: 30px;
-			position: relative;
-
-			.venue-name {
-				display: flex;
-				align-items: center;
-				font-size: 40px;
-
-				.venue-state {
-					font-size: 30px;
-					font-weight: bold;
-					margin-left: 10px;
-				}
-
-			}
-
-			.venue-users {
-				display: flex;
-				align-items: center;
-				font-size: 16px;
-
-				>span {
-					font-size: 30px;
-					font-family: monospace;
-					font-weight: bold;
-					margin-right: 10px;
-					background-color: #008542;
-					padding: 0 10px;
-					border-radius: 16px;
-					color: #fff;
-				}
-			}
-
-			.venue-type {
-				text-transform: uppercase;
-				font-weight: bold;
-				font-size: 12px;
-				display: inline;
-				padding: 3px 10px;
-				border-radius: 10px;
-				background-color: #ddd;
-			}
-		}
-
-		.map {
-			height: 280px;
-			margin: 10px;
-			width: 100%;
-			max-width: 280px;
-			border-radius: 10px;
-			overflow: hidden;
-		}
-
-		.actions {
+		.venue-details {
 			display: flex;
-			margin-top: 70px;
 
-			.cta-btn {
-				cursor: pointer;
-				border-radius: 7px;
-				padding: 7px 10px;
-				margin-top: 10px;
-				background-color: #fff;
-				border: 1px solid #ddd;
-				transition: all 0.3s;
-				margin-right: 10px;
+			.venue {
+				font-family: 'Open Sans', sans-serif;
+				padding: 10px;
+				margin-top: 30px;
+				position: relative;
 
-				&:hover {
-					background-color: #008542;
-					border: 1px solid #008542;
-					color: #fff;
+				.venue-name {
+					display: flex;
+					align-items: center;
+					font-size: 40px;
+
+					.venue-state {
+						font-size: 30px;
+						font-weight: bold;
+						margin-left: 10px;
+					}
+
+				}
+
+				.venue-users {
+					display: flex;
+					align-items: center;
+					font-size: 16px;
+
+					>span {
+						font-size: 30px;
+						font-family: monospace;
+						font-weight: bold;
+						margin-right: 10px;
+						background-color: #008542;
+						padding: 0 10px;
+						border-radius: 16px;
+						color: #fff;
+					}
+				}
+
+				.venue-type {
+					text-transform: uppercase;
+					font-weight: bold;
+					font-size: 12px;
+					display: inline;
+					padding: 3px 10px;
+					border-radius: 10px;
+					background-color: #ddd;
+				}
+			}
+
+			.map {
+				height: 280px;
+				margin: 10px;
+				width: 100%;
+				max-width: 280px;
+				border-radius: 10px;
+				overflow: hidden;
+			}
+
+			.actions {
+				display: flex;
+				margin-top: 70px;
+
+				.cta-btn {
+					cursor: pointer;
+					border-radius: 7px;
+					padding: 7px 10px;
+					margin-top: 10px;
+					background-color: #fff;
+					border: 1px solid #ddd;
+					transition: all 0.3s;
+					margin-right: 10px;
+
+					&:hover {
+						background-color: #008542;
+						border: 1px solid #008542;
+						color: #fff;
+					}
 				}
 			}
 		}
-
 	}
+
+}
+
+.MuiModal-root {
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .table {

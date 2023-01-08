@@ -1,0 +1,96 @@
+.MuiModal-root {
+  .survey-dialog {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 6px 40px rgba(0, 0, 0, 0.5);
+    min-width: 500px;
+
+    .survey-header {
+      margin: 0;
+      border-bottom: 1px solid #ddd;
+      margin-bottom: 10px;
+      padding: 20px;
+    }
+
+    .survey-form {
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+
+      .ico {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        background-color: #008542;
+        border-radius: 50%;
+        font-weight: bold;
+        height: 50px;
+        width: 50px;
+        align-self: center;
+      }
+
+      h1 {
+        font-weight: 400;
+        text-align: center;
+      }
+
+      .form-row {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 10px;
+
+        label {
+          text-align: right;
+          margin-right: 10px;
+        }
+
+        input {
+          margin: 0;
+          padding: 10px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          width: 95%;
+        }
+
+        &.form-item {
+          flex-direction: row;
+          align-items: center;
+
+          label {
+            min-width: 30px;
+          }
+
+          input {
+            width: 100%;
+          }
+
+          &.actions {
+            justify-content: space-between;
+
+            button {
+              padding: 10px;
+              background-color: #eee;
+              border: 1px solid #ccc;
+              border-radius: 5px;
+              font-size: 16px;
+              font-weight: bold;
+              margin-top: 20px;
+
+              &.primary {
+                background-color: #008542;
+                border: 1px solid #008542;
+                color: #fff;
+                align-self: flex-end;
+              }
+            }
+          }
+
+        }
+      }
+    }
+  }
+}
