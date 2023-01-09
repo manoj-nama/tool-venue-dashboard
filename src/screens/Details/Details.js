@@ -6,15 +6,18 @@ import Maps from "../Maps/Maps";
 import Table from "../Table/Table";
 import { TfiAnnouncement, TfiTicket } from "react-icons/tfi";
 import SurveyDialog from '../Components/Modal/SurveyModal';
+import WeTalkDialog from '../Components/Modal/WeTalkModal';
 
 function Details() {
   const [venueData, setVenueData] = React.useState([]);
   const [isOpen, setIsOpen] = React.useState(false);
+  const [isWeTalkOpen, setIsWeTalkOpen] = React.useState(false);
   const { id } = useParams();
   const nav = useNavigate();
 
   const handleModalClose = () => {
     setIsOpen(false);
+    setIsWeTalkOpen(false);
   }
 
   useEffect(() => {
@@ -53,7 +56,7 @@ function Details() {
               {"Active Users"}
             </div>
             <div className="actions">
-              <button className="cta-btn">
+              <button className="cta-btn" onClick={() => setIsWeTalkOpen(true)}>
                 <div className="btns2">
                   <span className="ico"><TfiAnnouncement /></span>
                   <span className="text">Make an Announcement</span>
@@ -73,6 +76,7 @@ function Details() {
         </div>
       </div>
       <SurveyDialog open={isOpen} onClose={handleModalClose} />
+      <WeTalkDialog open={isWeTalkOpen} onClose={handleModalClose} />
     </div>
   );
 }
