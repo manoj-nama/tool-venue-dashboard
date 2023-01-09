@@ -56,6 +56,17 @@
           width: 95%;
         }
 
+        textarea {
+          margin: 0;
+          padding: 10px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          width: 95%;
+          min-height: 150px;
+          max-height: 400px;
+          resize: vertical;
+        }
+
         &.form-item {
           flex-direction: row;
           align-items: center;
