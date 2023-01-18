@@ -45,17 +45,15 @@ export default function BasicTabs({ onTabSelect, selectedTabOnPageOpen }) {
 
   return (
     <Box sx={{ width: "100%" }}>
-      <Box>
-        <Tabs
-          value={selectedTabOnPageOpen}
-          onChange={handleChange}
-          aria-label="basic tabs example"
-        >
-          <Tab label="Most Users" {...a11yProps(0)} />
-          <Tab label="Most Bets" {...a11yProps(1)} />
-          <Tab label="Most Amount Spent" {...a11yProps(2)} />
-        </Tabs>
-      </Box>
+      <Tabs
+        value={selectedTabOnPageOpen}
+        onChange={handleChange}
+        aria-label="basic tabs example"
+      >
+        <Tab label="Most Users" {...a11yProps(0)} />
+        <Tab label="Most Bets" {...a11yProps(1)} />
+        <Tab label="Most Amount Spent" {...a11yProps(2)} />
+      </Tabs>
     </Box>
   );
 }

@@ -7,6 +7,7 @@ import Date from "../Date/Date.js";
 import SearchIcon from "@mui/icons-material/Search";
 import InputField from "@mui/material/InputBase";
 import { useNavigate } from "react-router-dom";
+import JurisdictionSelector from "../Components/JurisdictionBox";
 import {
   searchVenues,
 } from "../../services";
@@ -54,7 +55,7 @@ const makeVenuesRequest = async (type = "users", {
   jurisdiction = "",
 }) => {
   const filtersToApply = {};
-  if (searchText) {
+  if (searchText.trim()) {
     filtersToApply["text"] = searchText.trim();
   }
   if (startDate) {
@@ -77,7 +78,7 @@ const makeVenuesRequest = async (type = "users", {
 
 const Venues = () => {
   const navigate = useNavigate();
-  const devModeMountRef = createRef();
+  const mountedRef = createRef();
   const inputRef = createRef();
   const getSearchParams = () => new URLSearchParams(window.location.search);
   const [tableData, setTableData] = useState({
@@ -88,6 +89,7 @@ const Venues = () => {
     startDate: getSearchParams().get("startDate") || "",
     endDate: getSearchParams().get("endDate") || "",
     searchText: getSearchParams().get('searchText') || "",
+    jurisdiction: getSearchParams().get('jurisdiction') || "",
     tab: TABS[0],
   });
 
@@ -129,6 +131,9 @@ const Venues = () => {
     if (_filters.endDate) {
       filtersToApply["endDate"] = _filters.endDate;
     }
+    if (_filters.jurisdiction) {
+      filtersToApply["jurisdiction"] = _filters.jurisdiction;
+    }
     return filtersToApply;
   }
 
@@ -169,14 +174,24 @@ const Venues = () => {
     }
   };
 
+  const onJurisdictionChange = (evt) => {
+    let jurisdiction = evt.target.value;
+    jurisdiction = jurisdiction.toLowerCase() === "all" ? "" : jurisdiction;
+    updateSearchParams({ jurisdiction });
+    setFilter(filters => ({
+      ...filters,
+      jurisdiction,
+    }));
+  };
+
   useEffect(() => {
     getVenueData();
   }, [filter]);
 
   useEffect(() => {
-    if (!devModeMountRef.current) {
+    if (!mountedRef.current) {
       let currentTab = getCurrentTab();
-      devModeMountRef.current = true;
+      mountedRef.current = true;
       setFilter(filters => ({
         ...filters,
         tab: currentTab,
@@ -206,16 +221,22 @@ const Venues = () => {
   return (
     <div className="container">
       <div className="filters-container section">
-        <div className="search-box">
-          <SearchIcon
-            sx={{ backgroundColor: "white", color: "grey" }}
-          />
-          <InputField
-            sx={{ ml: 1, flex: 1, backgroundColor: "white" }}
-            placeholder="Search for Venues"
-            inputProps={{ "aria-label": "search venues" }}
-            defaultValue={filter.searchText}
-            inputRef={onTextRefChange}
+        <div className="search-box-container">
+          <div className="search-box">
+            <SearchIcon
+              sx={{ backgroundColor: "white", color: "#008542" }}
+            />
+            <InputField
+              sx={{ ml: 1, flex: 1, backgroundColor: "white" }}
+              placeholder="Search for Venues"
+              inputProps={{ "aria-label": "search venues" }}
+              defaultValue={filter.searchText}
+              inputRef={onTextRefChange}
+            />
+          </div>
+          <JurisdictionSelector
+            value={filter.jurisdiction}
+            onChange={onJurisdictionChange}
           />
         </div>
         <div className="filters">

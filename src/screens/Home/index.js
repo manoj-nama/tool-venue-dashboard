@@ -3,6 +3,7 @@ import "./Home.scss";
 import Charts from "../Charts/Charts.js";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import JurisdictionSelector from "../Components/JurisdictionBox";
 import {
   getDashboardMetrics,
 } from "../../services";
@@ -78,18 +79,10 @@ const Home = () => {
           <p className="value venueCount">{metrics.venueCount}</p>
           <p className="label venueCount">Venues</p>
         </div>
-        <div className="jur-box">
-          <select value={jurisdiction} onChange={onJurisdictionChange}>
-            <option value="all">All</option>
-            <option value="ACT">ACT</option>
-            <option value="NSW">NSW</option>
-            <option value="NT">NT</option>
-            <option value="QLD">QLD</option>
-            <option value="SA">SA</option>
-            <option value="TAS">TAS</option>
-            <option value="VIC">VIC</option>
-          </select>
-        </div>
+        <JurisdictionSelector
+          value={jurisdiction}
+          onChange={onJurisdictionChange}
+        />
       </div>
 
       <div className="full-width metric-section">
