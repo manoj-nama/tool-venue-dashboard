@@ -8,7 +8,22 @@ import {
   SEARCH_VENUE_BY_BET,
   SEARCH_VENUE_BY_ACTIVE_USER,
   LOGIN_API_URL,
+  DASHBOARD_API_URL
 } from "../constant";
+
+export const getDashboardMetrics = async (jurisdiction, limit = 5) => {
+  try {
+    const qs = { limit };
+    if (jurisdiction) {
+      qs['jurisdiction'] = jurisdiction;
+    }
+    const path = new URLSearchParams(qs).toString();
+    let res = await httpAuth.get(DASHBOARD_API_URL + `?${path}`);
+    return res?.data;
+  } catch (e) {
+    console.log(e);
+  }
+};
 
 export const getActiveUserVenueCounts = async () => {
   try {
