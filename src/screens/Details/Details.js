@@ -52,7 +52,7 @@ function Details() {
               <span className="venue-state">({venueData?.venueDetails?.venueState})</span>
             </div>
             <div className="venue-users">
-              <span>{venueData?.data?.[0]?.active_users}</span>
+              <span>{venueData?.active_users}</span>
               {"Active Users"}
             </div>
             <div className="actions">
