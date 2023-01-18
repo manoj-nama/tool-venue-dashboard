@@ -8,7 +8,8 @@ import {
   SEARCH_VENUE_BY_BET,
   SEARCH_VENUE_BY_ACTIVE_USER,
   LOGIN_API_URL,
-  DASHBOARD_API_URL
+  DASHBOARD_API_URL,
+  SEARCH_VENUES,
 } from "../constant";
 
 export const getDashboardMetrics = async (jurisdiction, limit = 5) => {
@@ -87,6 +88,16 @@ export const getVenuesByActiveUser = async (path) => {
     console.log(e);
   }
 };
+
+export const searchVenues = async (path = "") => {
+  try {
+    let res = await httpAuth.get(SEARCH_VENUES + path);
+    return res;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
 export const loginUser = async (userData) => {
   try {
     let res = await httpAuth.post(LOGIN_API_URL, userData);
