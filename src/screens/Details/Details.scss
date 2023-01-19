@@ -15,13 +15,6 @@
 					display: flex;
 					align-items: center;
 					font-size: 40px;
-
-					.venue-state {
-						font-size: 30px;
-						font-weight: bold;
-						margin-left: 10px;
-					}
-
 				}
 
 				.venue-users {
@@ -41,14 +34,22 @@
 					}
 				}
 
-				.venue-type {
+				.venue-pill {
 					text-transform: uppercase;
+					margin-right: 5px;
 					font-weight: bold;
 					font-size: 12px;
 					display: inline;
 					padding: 3px 10px;
-					border-radius: 10px;
+					border-radius: 13px;
 					background-color: #ddd;
+					border: 1px solid #ddd;
+
+					&.venue-state {
+						background-color: #fff;
+						color: #008542;
+						border-color: #008542;
+					}
 				}
 			}
 

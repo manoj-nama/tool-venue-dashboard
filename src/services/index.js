@@ -1,15 +1,9 @@
 import { httpAuth } from "../utils/http-utility";
 import {
-  COUNT_API_URL,
-  USER_API_URL,
-  BET_API_URL,
-  AMOUNT_API_URL,
-  SEARCH_VENUE_BY_AMOUNT,
-  SEARCH_VENUE_BY_BET,
-  SEARCH_VENUE_BY_ACTIVE_USER,
   LOGIN_API_URL,
   DASHBOARD_API_URL,
   SEARCH_VENUES,
+  VENUE_DETAILS,
 } from "../constant";
 
 export const getDashboardMetrics = async (jurisdiction, limit = 5) => {
@@ -26,72 +20,18 @@ export const getDashboardMetrics = async (jurisdiction, limit = 5) => {
   }
 };
 
-export const getActiveUserVenueCounts = async () => {
-  try {
-    let res = await httpAuth.get(COUNT_API_URL);
-    return res?.data;
-  } catch (e) {
-    console.log(e);
-  }
-};
-
-export const getUserStats = async () => {
-  try {
-    let res = await httpAuth.get(USER_API_URL);
-    return res?.data;
-  } catch (e) {
-    console.log(e);
-  }
-};
-
-export const getBetsPlaced = async () => {
-  try {
-    let res = await httpAuth.get(BET_API_URL);
-    return res?.data;
-  } catch (e) {
-    console.log(e);
-  }
-};
-
-export const getAmountSpent = async () => {
-  try {
-    let res = await httpAuth.get(AMOUNT_API_URL);
-    return res?.data;
-  } catch (e) {
-    console.log(e);
-  }
-};
-
-export const getVenuesByAmount = async (path) => {
-  try {
-    let res = await httpAuth.get(SEARCH_VENUE_BY_AMOUNT + path);
-    return res;
-  } catch (e) {
-    console.log(e);
-  }
-};
-
-export const getVenuesByBets = async (path) => {
-  try {
-    let res = await httpAuth.get(SEARCH_VENUE_BY_BET + path);
-    return res;
-  } catch (e) {
-    console.log(e);
-  }
-};
-
-export const getVenuesByActiveUser = async (path) => {
-  try {
-    let res = await httpAuth.get(SEARCH_VENUE_BY_ACTIVE_USER + path);
-    return res;
-  } catch (e) {
-    console.log(e);
-  }
-};
-
 export const searchVenues = async (path = "") => {
   try {
     let res = await httpAuth.get(SEARCH_VENUES + path);
+    return res;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const fetchVenue = async (venueId) => {
+  try {
+    let res = await httpAuth.get(VENUE_DETAILS + venueId);
     return res;
   } catch (e) {
     console.log(e);

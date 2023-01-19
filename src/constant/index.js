@@ -8,3 +8,4 @@ export const SEARCH_VENUE_BY_ACTIVE_USER = "/most-active-users/";
 export const LOGIN_API_URL = "login-user";
 export const DASHBOARD_API_URL = "dashboard";
 export const SEARCH_VENUES = "search";
+export const VENUE_DETAILS = "venue-info/";
