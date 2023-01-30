@@ -63,7 +63,7 @@ function Details() {
               <button className="cta-btn" onClick={() => setIsOpen(true)}>
                 <div className="btns2">
                   <span className="ico"><TfiTicket /></span>
-                  <span className="text">Send a Survey</span>
+                  <span className="text">Send Promotion</span>
                 </div>
               </button>
             </div>
