@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { httpAuth } from "../../utils/http-utility";
 import { useNavigate, useParams } from "react-router-dom";
 import "./Details.scss";
 import Maps from "../Maps/Maps";
@@ -7,6 +6,7 @@ import Table from "../Table/Table";
 import { TfiAnnouncement, TfiTicket } from "react-icons/tfi";
 import SurveyDialog from '../Components/Modal/SurveyModal';
 import WeTalkDialog from '../Components/Modal/WeTalkModal';
+import { fetchVenue } from "../../services";
 
 function Details() {
   const [venueData, setVenueData] = React.useState([]);
@@ -22,9 +22,7 @@ function Details() {
 
   useEffect(() => {
     const fetchdata = async () => {
-      const res = await httpAuth.get(
-        `http://13.211.126.67:3000/v1/service-venue/venue-info/${id}`
-      );
+      const res = await fetchVenue(id);
       if (res.data.data.length === 0) {
         nav("/error");
       } else {
@@ -46,10 +44,10 @@ function Details() {
             )}
           </div>
           <div className="venue">
-            <div className="venue-type">{venueData?.venueDetails?.venueType}</div>
+            <div className="venue-pill">{venueData?.venueDetails?.venueType}</div>
+            <span className="venue-pill venue-state">{venueData?.venueDetails?.venueState}</span>
             <div className="venue-name">
               {venueData?.venueDetails?.venueName}
-              <span className="venue-state">({venueData?.venueDetails?.venueState})</span>
             </div>
             <div className="venue-users">
               <span>{venueData?.active_users}</span>
@@ -72,7 +70,7 @@ function Details() {
           </div>
         </div>
         <div className="table">
-          <Table />
+          <Table data={venueData.data} />
         </div>
       </div>
       <SurveyDialog open={isOpen} onClose={handleModalClose} />

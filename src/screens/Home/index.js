@@ -2,11 +2,10 @@ import * as React from "react";
 import "./Home.scss";
 import Charts from "../Charts/Charts.js";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import JurisdictionSelector from "../Components/JurisdictionBox";
 import {
-  getActiveUserVenueCounts,
-  getUserStats,
-  getBetsPlaced,
-  getAmountSpent,
+  getDashboardMetrics,
 } from "../../services";
 
 export const toCountString = (count) => {
@@ -23,95 +22,103 @@ export const toCountString = (count) => {
 };
 
 const Home = () => {
-  const didMountRef = React.useRef(false);
-  const [userStats, setUserStats] = React.useState();
-  const [betStats, setBetStats] = React.useState();
-  const [amountStats, setAmountStats] = React.useState();
-  const [activeCount, setActiveCount] = React.useState({
+  const navigate = useNavigate();
+  const getSearchParams = () => new URLSearchParams(window.location.search);
+  const [jurisdiction, setJurisdiction] = React.useState(
+    getSearchParams().get('jurisdiction') || "all"
+  );
+  const [metrics, setMetrics] = React.useState({
     userCount: 0,
     venueCount: 0,
+    users: [],
+    bets: [],
+    amount: [],
   });
 
-  const getActiveCount = async () => {
-    let res = await getActiveUserVenueCounts();
-    setActiveCount({
-      userCount: toCountString(res.userCount || 0),
-      venueCount: toCountString(res.venueCount || 0),
+  const getMetrics = async (jurisdiction) => {
+    let {
+      userCount,
+      venueCount,
+      users,
+      bets,
+      amount
+    } = await getDashboardMetrics(jurisdiction);
+
+    setMetrics({
+      userCount,
+      venueCount,
+      users: users.data,
+      bets: bets.data,
+      amount: amount.data,
     });
   };
 
-  const getStatsForUser = async () => {
-    let res = await getUserStats();
-    setUserStats(res?.active_users);
-  };
-
-  const getBetsPlacedStats = async () => {
-    let res = await getBetsPlaced();
-    setBetStats(res?.data);
-  };
-
-  const getAmountSpentStats = async () => {
-    let res = await getAmountSpent();
-    setAmountStats(res?.data);
+  const onJurisdictionChange = (evt) => {
+    let jur = evt.target.value;
+    if (jur && jur.toLowerCase() !== "all") {
+      navigate(`/dashboard?jurisdiction=${jur}`);
+    } else {
+      navigate('/dashboard');
+    }
+    setJurisdiction(jur);
   };
 
   useEffect(() => {
-    if (!didMountRef.current) {
-      // This is to prevent double mount under strict mode with React18 for Dev mode
-      didMountRef.current = true;
-
-      getActiveCount();
-      getStatsForUser();
-      getBetsPlacedStats();
-      getAmountSpentStats();
-    }
-  }, []);
+    getMetrics(jurisdiction);
+  }, [jurisdiction]);
 
   return (
     <div className="container">
       <div className="section landing">
         <div className="metric totalUsers">
-          <p className="value userCount">{activeCount?.userCount}</p>
+          <p className="value userCount">{metrics.userCount}</p>
           <p className="label userCount">Active Users</p>
         </div>
         <div className="divider"></div>
         <div className="metric totalVenues">
-          <p className="value venueCount">{activeCount?.venueCount}</p>
+          <p className="value venueCount">{metrics.venueCount}</p>
           <p className="label venueCount">Venues</p>
         </div>
+        <JurisdictionSelector
+          value={jurisdiction}
+          onChange={onJurisdictionChange}
+        />
       </div>
 
-      <div className="full-width">
+      <div className="full-width metric-section">
         <h2 className="dashboard-header">Top Venues</h2>
+        {
+          jurisdiction !== 'all' ? (
+            <span>{jurisdiction}</span>
+          ) : null
+        }
       </div>
       <div className="section metrics">
         <Charts
           name="Most Active Users"
-          data={userStats}
+          data={metrics.users}
           keyName={"venueId"}
           maxValueKey={"active_users"}
           color={"warning"}
-          textColor={"#ed6c03"}
+          textColor={"#1876d2"}
           display$={"none"}
           displayHr={"none"}
           route={"/venues?tab=users"}
-          setMargin={1}
         />
         <Charts
           name="Most Bets Placed"
-          data={betStats}
+          data={metrics.bets}
           keyName={"venueId"}
           maxValueKey={"frequency_of_bets"}
           color={"primary"}
-          textColor={"#1876d2"}
+          textColor={"#ed6c03"}
           display$={"none"}
           displayHr={"contents"}
           route={"/venues?tab=bets"}
-          setMargin={0}
         />
         <Charts
           name="Most Amount Placed on Bets"
-          data={amountStats}
+          data={metrics.amount}
           keyName={"venueId"}
           maxValueKey={"frequency_of_total_amount_spent"}
           color={"success"}
@@ -119,7 +126,6 @@ const Home = () => {
           display$={"contents"}
           displayHr={"contents"}
           route={"/venues?tab=amount"}
-          setMargin={0}
         />
       </div>
     </div>

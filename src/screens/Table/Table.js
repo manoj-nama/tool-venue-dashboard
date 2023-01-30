@@ -1,11 +1,7 @@
-import * as React from "react";
+import React from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import moment from "moment";
 import "./Table.scss";
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-
-import { httpAuth } from "../../utils/http-utility";
 
 const columns = [
   {
@@ -40,20 +36,9 @@ const columns = [
   },
 ];
 
-export default function DataTable() {
-  const [betData, setBetData] = useState([]);
-  const { id } = useParams();
+export default function DataTable({ data = [] }) {
 
-  useEffect(() => {
-    const fetchdata = async () => {
-      const res = await httpAuth.get(
-        `http://13.211.126.67:3000/v1/service-venue/venue-info/${id}`
-      );
-      setBetData(res.data.data);
-    };
-    fetchdata();
-  }, []);
-  const tableData = betData.map((row, index) => {
+  const tableData = data.map((row, index) => {
     return {
       betId: index,
       account_number: row?.account_number,

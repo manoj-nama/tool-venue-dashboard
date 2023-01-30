@@ -44,19 +44,50 @@
 	flex-direction: column;
 	justify-content: space-between;
 
-	.search-box {
+	.search-box-container {
 		display: flex;
 		align-items: center;
+		padding: 0 10px;
 		border-bottom: 1px solid #eee;
+
+		.search-box {
+			display: flex;
+			align-items: center;
+			width: 100%;
+
+			.MuiInputBase-input {
+				height: 40px;
+			}
+		}
+	}
+
+	.jur-box {
+		margin-right: 10px;
 	}
 
 	.filters {
 		display: flex;
+		align-items: center;
+
+		.MuiTabs-root .MuiButtonBase-root {
+			font-weight: bold;
+			color: #777;
+
+			&.Mui-selected {
+				color: #008542;
+				background-color: #00854233;
+			}
+		}
+
+		.MuiTabs-indicator {
+			background-color: #008542;
+			height: 3px;
+		}
 
 		.date-picker {
 			display: flex;
 			align-items: center;
-			width: 400px;
+			min-width: 300px;
 
 			>label {
 				margin-right: 10px;

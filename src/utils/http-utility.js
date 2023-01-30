@@ -9,9 +9,9 @@ const httpAuth = axios.create({
 
 httpAuth.interceptors.request.use((conf) => {
   const token = localStorage.getItem('auth');
-  if(token){
-    conf.headers= {
-      'x-auth-token':`${token}`
+  if (token) {
+    conf.headers = {
+      'x-auth-token': `${token}`
     }
   }
   return conf;
