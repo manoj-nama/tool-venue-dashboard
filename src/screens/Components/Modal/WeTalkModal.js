@@ -17,17 +17,17 @@ const WeTalkDialog = ({ onClose, open }) => {
 
   return (
     <Modal onClose={handleClose} open={open}>
-      <div className="survey-dialog">
+      <div className="promotion-dialog">
         {
           isSent ? (
-            <div className="survey-form">
+            <div className="promotions-container success">
               <span className="ico"><TfiCheck /></span>
               <h1>Announcement Sent Successfully!</h1>
             </div>
           ) : (
             <>
-              <h3 className="survey-header">New Announcement</h3>
-              <form className="survey-form">
+              <h3 className="promotion-header">New Announcement</h3>
+              <form className="promotions-container announcement">
                 <div className="form-row">
                   <label htmlFor="survey-desc">Message to send</label>
                   <textarea name="survey-desc" id="survey-desc"></textarea>

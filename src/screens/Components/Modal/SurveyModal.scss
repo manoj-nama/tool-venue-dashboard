@@ -26,6 +26,10 @@
       display: flex;
       flex-direction: column;
 
+      &.announcement {
+        padding: 20px;
+      }
+
       &.success {
         padding: 20px;
 
@@ -47,7 +51,6 @@
           text-align: center;
         }
       }
-
 
       .promotion {
         display: flex;
@@ -74,6 +77,56 @@
         .promo-desc {
           font-size: 18px;
           font-style: italic;
+        }
+      }
+
+      .form-row {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 10px;
+
+        label {
+          text-align: right;
+          margin-right: 10px;
+        }
+
+        textarea {
+          margin: 0;
+          padding: 10px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          width: 95%;
+          min-height: 150px;
+          max-height: 400px;
+          resize: vertical;
+        }
+
+        &.form-item {
+          flex-direction: row;
+          align-items: center;
+
+          &.actions {
+            justify-content: space-between;
+
+            button {
+              padding: 10px;
+              background-color: #eee;
+              border: 1px solid #ccc;
+              border-radius: 5px;
+              font-size: 16px;
+              font-weight: bold;
+              margin-top: 20px;
+              cursor: pointer;
+
+              &.primary {
+                background-color: #008542;
+                border: 1px solid #008542;
+                color: #fff;
+                align-self: flex-end;
+              }
+            }
+          }
         }
       }
     }
