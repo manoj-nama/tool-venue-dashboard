@@ -9,30 +9,30 @@ const Login = () => {
   const password = useRef();
   const navigate = useNavigate();
 
-  useEffect(()=>{
+  useEffect(() => {
     const userToken = localStorage.getItem('auth');
     if (userToken) {
-         navigate('/dashboard');
+      navigate('/dashboard');
     }
-  },[])
+  }, [])
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    if(!userName.current.value||!password.current.value)
-    return;
+    if (!userName.current.value || !password.current.value)
+      return;
 
-    try{
+    try {
       const data = await loginUser({
         userName: userName.current.value,
         password: password.current.value
       });
-      if(!data||!data.token)throw 'Token is missing';
-      localStorage.setItem('auth',data.token);
-        navigate("/dashboard")
-      
+      if (!data || !data.token) throw 'Token is missing';
+      localStorage.setItem('auth', data.token);
+      navigate("/dashboard")
+
     }
-    catch(error){
-      console.log('Error : ',error);
+    catch (error) {
+      console.log('Error : ', error);
 
     }
     userName.current.value = '';
@@ -47,9 +47,9 @@ const Login = () => {
         <div className="Form">
           <form className="FormDetails" onSubmit={onSubmit}>
             <input type="text" placeholder="UserName" ref={userName} />
-            <input type="text" placeholder="Password" ref={password} />
+            <input type="password" placeholder="Password" ref={password} />
             <div className="button">
-            <button className="btn2" type="submit">Login</button>
+              <button className="btn2" type="submit">Login</button>
             </div>
           </form>
         </div>
