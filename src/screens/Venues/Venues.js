@@ -105,9 +105,9 @@ const Venues = () => {
   const getVenueData = async () => {
     let res = await makeVenuesRequest(filter.tab, filter);
     if (res) {
-      const { totalCount, data, active_users } = res.data;
+      const { total_count, data, active_users } = res.data;
       setTableData({
-        totalCount,
+        total_count,
         data: active_users || data,
       });
     }
@@ -263,7 +263,7 @@ const Venues = () => {
         <Table
           type={tableType.key}
           label={tableType.label}
-          totalRecords={tableData?.totalCount}
+          totalRecords={tableData?.total_count}
           data={tableData?.data}
           onRecordClick={navigateToVenueDetails}
         />
