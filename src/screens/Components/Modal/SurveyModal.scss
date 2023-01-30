@@ -1,5 +1,5 @@
 .MuiModal-root {
-  .survey-dialog {
+  .promotion-dialog {
     display: flex;
     flex-direction: column;
     background-color: #fff;
@@ -7,99 +7,73 @@
     box-shadow: 0 6px 40px rgba(0, 0, 0, 0.5);
     min-width: 500px;
 
-    .survey-header {
+    .promotion-header {
+      margin: 0;
+      padding: 20px;
+      padding-bottom: 10px;
+    }
+
+    .promotion-helper {
       margin: 0;
       border-bottom: 1px solid #ddd;
       margin-bottom: 10px;
-      padding: 20px;
+      padding: 0 20px;
+      padding-bottom: 10px;
+      font-style: italic;
     }
 
-    .survey-form {
+    .promotions-container {
       display: flex;
       flex-direction: column;
-      padding: 20px;
 
-      .ico {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #fff;
-        background-color: #008542;
-        border-radius: 50%;
-        font-weight: bold;
-        height: 50px;
-        width: 50px;
-        align-self: center;
+      &.success {
+        padding: 20px;
+
+        .ico {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: #fff;
+          background-color: #008542;
+          border-radius: 50%;
+          font-weight: bold;
+          height: 50px;
+          width: 50px;
+          align-self: center;
+        }
+
+        h1 {
+          font-weight: 400;
+          text-align: center;
+        }
       }
 
-      h1 {
-        font-weight: 400;
-        text-align: center;
-      }
 
-      .form-row {
+      .promotion {
         display: flex;
         flex-direction: column;
-        align-items: flex-start;
-        margin-bottom: 10px;
+        margin: 10px;
+        margin-top: 0;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #eee;
+        cursor: pointer;
+        color: #222;
 
-        label {
-          text-align: right;
-          margin-right: 10px;
+        &:hover {
+          background-color: #008542;
+          border-color: #008542;
+          color: #fff;
         }
 
-        input {
-          margin: 0;
-          padding: 10px;
-          border: 1px solid #ccc;
-          border-radius: 5px;
-          width: 95%;
+        .promo-title {
+          font-size: 24px;
+          padding-bottom: 5px;
         }
 
-        textarea {
-          margin: 0;
-          padding: 10px;
-          border: 1px solid #ccc;
-          border-radius: 5px;
-          width: 95%;
-          min-height: 150px;
-          max-height: 400px;
-          resize: vertical;
-        }
-
-        &.form-item {
-          flex-direction: row;
-          align-items: center;
-
-          label {
-            min-width: 30px;
-          }
-
-          input {
-            width: 100%;
-          }
-
-          &.actions {
-            justify-content: space-between;
-
-            button {
-              padding: 10px;
-              background-color: #eee;
-              border: 1px solid #ccc;
-              border-radius: 5px;
-              font-size: 16px;
-              font-weight: bold;
-              margin-top: 20px;
-
-              &.primary {
-                background-color: #008542;
-                border: 1px solid #008542;
-                color: #fff;
-                align-self: flex-end;
-              }
-            }
-          }
-
+        .promo-desc {
+          font-size: 18px;
+          font-style: italic;
         }
       }
     }
