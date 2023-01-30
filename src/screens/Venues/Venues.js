@@ -189,17 +189,13 @@ const Venues = () => {
   }, [filter]);
 
   useEffect(() => {
-    if (!mountedRef.current) {
-      let currentTab = getCurrentTab();
-      mountedRef.current = true;
-      setFilter(filters => ({
-        ...filters,
-        tab: currentTab,
-      }));
-    } else {
-      return () => {
-        inputRef.current.removeEventListener("input", imperativeChangeHandler);
-      }
+    let currentTab = getCurrentTab();
+    setFilter(filters => ({
+      ...filters,
+      tab: currentTab,
+    }));
+    return () => {
+      inputRef.current.removeEventListener("input", imperativeChangeHandler);
     }
   }, []);
 
